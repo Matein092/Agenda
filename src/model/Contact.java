@@ -12,7 +12,7 @@ public class Contact {
 	private double id;
 	private int semester;
 	private String avatar;
-	private String birhtday;
+	private String birthday;
 	private int age;
 	private String program;
 	
