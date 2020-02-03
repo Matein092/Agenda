@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="808.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="808.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ScheduleController">
   <tabs>
     <Tab text="Contactos">
       <content>
@@ -30,11 +30,11 @@
                      <children>
                         <VBox alignment="CENTER" layoutX="14.0" layoutY="47.0" prefHeight="207.0" prefWidth="244.0" spacing="20.0" style="-fx-background-color: #e8e8e8;">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="ivPhoto" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/Contacto.jpg" />
+                                    <Image url="@../img/Contact.jpg" />
                                  </image></ImageView>
-                              <Label text="Nombre">
+                              <Label fx:id="lbName" text="Nombre">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Label>
@@ -62,30 +62,30 @@
                                     <Label text="Email:" GridPane.rowIndex="3" />
                                     <Label text="Carrera:" GridPane.rowIndex="4" />
                                     <Label text="Nivel:" GridPane.rowIndex="5" />
-                                    <TextField style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" />
-                                    <TextField style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <TextField style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <DatePicker prefHeight="25.0" prefWidth="350.0" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="tfCode" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" />
+                                    <TextField fx:id="tfTelephone" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="tfEmail" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="tfCareer" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="tfLevel" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <DatePicker fx:id="dpBornDate" prefHeight="25.0" prefWidth="350.0" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                            </children></HBox>
                         <HBox alignment="CENTER" layoutX="284.0" layoutY="227.0" prefHeight="32.0" prefWidth="502.0" spacing="10.0" style="-fx-background-color: #e8e8e8;">
                            <children>
-                              <Button mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Nuevo Contacto" textAlignment="CENTER">
+                              <Button fx:id="btNewContact" mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Nuevo Contacto" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Button>
-                              <Button mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Guardar Contacto" textAlignment="CENTER">
+                              <Button fx:id="btSaveContact" mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Guardar Contacto" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Button>
-                              <Button mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Eliminar Contacto" textAlignment="CENTER">
+                              <Button fx:id="btDeleteContact" mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Eliminar Contacto" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Button>
-                              <Button mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Actualizar Contacto" textAlignment="CENTER">
+                              <Button fx:id="btUpdateContact" mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Actualizar Contacto" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Button>
@@ -93,8 +93,8 @@
                         </HBox>
                         <HBox alignment="CENTER" layoutX="14.0" layoutY="12.0" prefHeight="29.0" prefWidth="247.0" spacing="10.0" style="-fx-background-color: #e8e8e8;">
                            <children>
-                              <TextField promptText="Buscar" style="-fx-background-color: #cfcfcf;" />
-                              <ComboBox prefWidth="150.0" promptText="Criterio" style="-fx-background-color: #bababa;" />
+                              <TextField fx:id="tfSearch" promptText="Buscar" style="-fx-background-color: #cfcfcf;" />
+                              <ComboBox fx:id="cbCriterio" prefWidth="150.0" promptText="Criterio" style="-fx-background-color: #bababa;" />
                            </children>
                         </HBox>
                      </children>
@@ -128,16 +128,16 @@
                                           <Label text="Campus:" GridPane.rowIndex="4" />
                                           <Label text="Edificio:" GridPane.rowIndex="5" />
                                           <Label text="Salón:" GridPane.rowIndex="6" />
-                                          <TextField prefHeight="25.0" prefWidth="268.0" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" />
-                                          <TextField style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <TextField style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <TextField fx:id="tfNRC" prefHeight="25.0" prefWidth="268.0" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" />
+                                          <TextField fx:id="tfCreditHours" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <TextField fx:id="tfLevel" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                           <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                          <TextField style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                          <TextField style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                          <TextField style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                          <TextField style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                          <TextField fx:id="tfInstructor" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <TextField fx:id="tfCampus" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                          <TextField fx:id="tfBuilding" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                          <TextField fx:id="tfRoom" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                                           <Label layoutX="10.0" layoutY="173.0" text="Horario:" GridPane.rowIndex="7" />
-                                          <DatePicker prefHeight="25.0" prefWidth="372.0" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                          <TextField fx:id="tfTime" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                        </children>
                                     </GridPane>
                                  </center>
@@ -150,23 +150,23 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <ListView prefHeight="220.0" prefWidth="243.0" />
+                              <ListView fx:id="lvCourses" prefHeight="220.0" prefWidth="243.0" />
                            </children></VBox>
                         <HBox alignment="CENTER" layoutX="283.0" layoutY="238.0" prefHeight="32.0" prefWidth="502.0" spacing="10.0" style="-fx-background-color: #e8e8e8;">
                            <children>
-                              <Button mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Nueva Materia" textAlignment="CENTER">
+                              <Button fx:id="btNewCourse" mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Nueva Materia" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Button>
-                              <Button mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Guardar Materia" textAlignment="CENTER">
+                              <Button fx:id="btSaveCourse" mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Guardar Materia" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Button>
-                              <Button mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Eliminar Materia" textAlignment="CENTER">
+                              <Button fx:id="btDeleteCourse" mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Eliminar Materia" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Button>
-                              <Button mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Actualizar Materia" textAlignment="CENTER">
+                              <Button fx:id="btUpdateCourse" mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Actualizar Materia" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Button>
@@ -185,7 +185,7 @@
                   <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="34.0" prefHeight="26.0" prefWidth="765.0" spacing="10.0" style="-fx-background-color: #e8e8e8;">
                      <children>
                         <Label text="El promedio de materias para el estudiante " />
-                        <Label text="x" />
+                        <Label fx:id="lbCoursesAverage" text="x" />
                         <Label text="es" />
                         <Label text="Tantto" />
                      </children>
@@ -193,13 +193,13 @@
                   <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="104.0" prefHeight="28.0" prefWidth="762.0" spacing="10.0" style="-fx-background-color: #e8e8e8;">
                      <children>
                         <Label text="La materia mas matriculada es " />
-                        <Label text="x" />
+                        <Label fx:id="lbMostEnrolledCourse" text="x" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="139.0" prefHeight="31.0" prefWidth="762.0" spacing="10.0" style="-fx-background-color: #e8e8e8;">
                      <children>
                         <Label text="La materia menos matriculda es " />
-                        <Label text="x" />
+                        <Label fx:id="lbLessEnrolledCourse" text="x" />
                      </children>
                   </HBox>
                   <VBox alignment="CENTER" layoutX="25.0" layoutY="200.0" prefHeight="339.0" prefWidth="339.0" spacing="10.0" style="-fx-background-color: #e8e8e8;">
@@ -209,7 +209,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <ListView prefHeight="252.0" prefWidth="363.0" />
+                        <ListView fx:id="lvAllCourses" prefHeight="252.0" prefWidth="363.0" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" layoutX="387.0" layoutY="201.0" prefHeight="337.0" prefWidth="398.0" spacing="10.0" style="-fx-background-color: #e8e8e8;">
@@ -239,16 +239,16 @@
                                     <Label text="Campus:" GridPane.rowIndex="4" />
                                     <Label text="Edificio:" GridPane.rowIndex="5" />
                                     <Label text="Salón:" GridPane.rowIndex="6" />
-                                    <TextField prefHeight="25.0" prefWidth="268.0" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" />
-                                    <TextField style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="tfNRCSummary" prefHeight="25.0" prefWidth="268.0" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" />
+                                    <TextField fx:id="tfCreditHoursSummary" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="tfLevelSummary" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <TextField style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <TextField style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <TextField fx:id="tfInstructorSummary" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="tfCampusSummary" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="tfBuildingSummary" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <TextField fx:id="tfRoomSummary" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                                     <Label layoutX="10.0" layoutY="173.0" text="Horario:" GridPane.rowIndex="7" />
-                                    <DatePicker prefHeight="25.0" prefWidth="372.0" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <TextField fx:id="tfTimeSummary" style="-fx-background-color: #cfcfcf;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                  </children>
                               </GridPane>
                            </center>
@@ -260,7 +260,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <Label text="x" />
+                              <Label fx:id="lbStudentsPerCourse" text="x" />
                            </children>
                         </HBox>
                      </children>
@@ -268,7 +268,7 @@
                   <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="66.0" prefHeight="30.0" prefWidth="763.0" spacing="10.0" style="-fx-background-color: #e8e8e8;">
                      <children>
                         <Label text="El promedio de creditos matriculados para el estudiante " />
-                        <Label text="x" />
+                        <Label fx:id="lbCreditHoursAverage" text="x" />
                         <Label text="es" />
                         <Label text="Tantto" />
                      </children>
