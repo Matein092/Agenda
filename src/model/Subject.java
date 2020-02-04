@@ -2,6 +2,7 @@ package model;
 
 public class Subject {
 	
+	//Attributes
 	private String name;
 	private int nrc;
 	private int enrolledStudent;

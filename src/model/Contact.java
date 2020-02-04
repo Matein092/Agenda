@@ -8,18 +8,18 @@ public class Contact {
 	private String lastName;
 	private String telephone;
 	private String email;
-	private double id;
+	private	String id;
 	private int semester;
 	private String avatar;
 	private String birthday;
 	private int age;
 	private String program;
 	
-	//Asociation
+	//Association
 	private List<Subject> subjects;
 		
-
-	public Contact(String name, String lastName, String telephone, String email, double id, int semester, String avatar,
+	//Constructor
+	public Contact(String name, String lastName, String telephone, String email, String id, int semester, String avatar,
 			String birthday, int age, String program) {
 		this.name = name;
 		this.lastName = lastName;
@@ -67,11 +67,11 @@ public class Contact {
 		this.email = email;
 	}
 	
-	public double getId() {
+	public String getId() {
 		return id;
 	}
 	
-	public void setId(double id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
