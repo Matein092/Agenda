@@ -1,10 +1,9 @@
 package model;
+import java.util.*;
 
 public class Contact {
 
-	/**
-	 * 
-	 */
+	//Attributes
 	private String name;
 	private String lastName;
 	private String telephone;
@@ -16,14 +15,12 @@ public class Contact {
 	private int age;
 	private String program;
 	
-	
-	
-	
-	
+	//Asociation
+	private List<Subject> subjects;
+		
 
 	public Contact(String name, String lastName, String telephone, String email, double id, int semester, String avatar,
-			String birhtday, int age, String program) {
-		super();
+			String birthday, int age, String program) {
 		this.name = name;
 		this.lastName = lastName;
 		this.telephone = telephone;
@@ -31,73 +28,124 @@ public class Contact {
 		this.id = id;
 		this.semester = semester;
 		this.avatar = avatar;
-		this.birhtday = birhtday;
+		this.birthday = birthday;
 		this.age = age;
 		this.program = program;
+		subjects = new ArrayList<Subject>();
+		
 	}
-	
 	
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public String getLastName() {
 		return lastName;
 	}
+	
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	
 	public String getTelephone() {
 		return telephone;
 	}
+	
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
+	
 	public String getEmail() {
 		return email;
 	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	public double getId() {
 		return id;
 	}
+	
 	public void setId(double id) {
 		this.id = id;
 	}
+	
 	public int getSemester() {
 		return semester;
 	}
+	
 	public void setSemester(int semester) {
 		this.semester = semester;
-	}//
+	}
+	
 	public String getAvatar() {
 		return avatar;
 	}
+	
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
-	public String getBirhtday() {
-		return birhtday;
+	
+	public String getBirthday() {
+		return birthday;
 	}
-	public void setBirhtday(String birhtday) {
-		this.birhtday = birhtday;
+
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
+
 	public int getAge() {
 		return age;
 	}
+	
 	public void setAge(int age) {
 		this.age = age;
 	}
+	
 	public String getProgram() {
 		return program;
 	}
+	
 	public void setProgram(String program) {
 		this.program = program;
 	}
 	
+	public List<Subject> getSubjects() {
+		return subjects;
+	}
 	
+	public void setSubjects(List<Subject> subjects) {
+		this.subjects = subjects;
+	}
 	
+	public Subject searchSubject(int nrc){
+		Subject objSubject = null;
+		for(int i = 0; i < subjects.size(); i++) {
+			if(subjects.get(i).getNrc() == nrc ) {
+				objSubject = new Subject(subjects.get(i).getName(),subjects.get(i).getNrc(),  subjects.get(i).getEnrolledStudent(), subjects.get(i).getTeacherName(), subjects.get(i).getTeacherEmail(), subjects.get(i).getMonitorName(), subjects.get(i).getMonitorEmail(), subjects.get(i).getDepartment(), subjects.get(i).getGroup());
+			}else {
+				
+			}
+		}
+		return objSubject;
+	}
+	
+	public void modifySubject(String name, int nrc, int enrolledStudent, String teacherName, String teacherEmail,
+			String monitorName, String monitorEmail, String department, int group) {
+		Subject objS = searchSubject(nrc);
+		objS.setName(name);
+		objS.setNrc(nrc);
+		objS.setTeacherName(teacherName);
+		objS.setTeacherEmail(teacherEmail);
+		objS.setMonitorName(monitorName);
+		objS.setMonitorEmail(monitorEmail);
+		objS.setDepartment(department);
+		objS.setGroup(group);
+	}
 }
