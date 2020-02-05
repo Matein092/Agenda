@@ -139,13 +139,18 @@ public class Contact {
 	public void modifySubject(String name, int nrc, int enrolledStudent, String teacherName, String teacherEmail,
 			String monitorName, String monitorEmail, String department, int group) {
 		Subject objS = searchSubject(nrc);
-		objS.setName(name);
-		objS.setNrc(nrc);
-		objS.setTeacherName(teacherName);
-		objS.setTeacherEmail(teacherEmail);
-		objS.setMonitorName(monitorName);
-		objS.setMonitorEmail(monitorEmail);
-		objS.setDepartment(department);
-		objS.setGroup(group);
+		if(objS != null) {
+			objS.setName(name);
+			objS.setNrc(nrc);
+			objS.setTeacherName(teacherName);
+			objS.setTeacherEmail(teacherEmail);
+			objS.setMonitorName(monitorName);
+			objS.setMonitorEmail(monitorEmail);
+			objS.setDepartment(department);
+			objS.setGroup(group);
+		}else {
+			
+		}
+		
 	}
 }

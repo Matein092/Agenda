@@ -62,32 +62,67 @@ import java.util.*;
 		public void modifyContactById(String name, String lastName, String telephone, String email, String id, int semester, String avatar,
 				String birthday, int age, String program) {
 			Contact objC = searchById(id);
-			objC.setName(name);
-			objC.setLastName(lastName);
-			objC.setTelephone(telephone);
-			objC.setEmail(email);
-			objC.setId(id);
-			objC.setSemester(semester);
-			objC.setAvatar(avatar);
-			objC.setAge(age);
-			objC.setBirthday(birthday);
-			objC.setProgram(program);
+			if(objC != null) {
+				objC.setName(name);
+				objC.setLastName(lastName);
+				objC.setTelephone(telephone);
+				objC.setEmail(email);
+				objC.setId(id);
+				objC.setSemester(semester);
+				objC.setAvatar(avatar);
+				objC.setAge(age);
+				objC.setBirthday(birthday);
+				objC.setProgram(program);
+			}
 		}
 		
 		public void modifyContactByBirthDay(String name, String lastName, String telephone, String email, String id, int semester, String avatar,
 				String birthday, int age, String program) {
 			Contact objC = searchById(birthday);
-			objC.setName(name);
-			objC.setLastName(lastName);
-			objC.setTelephone(telephone);
-			objC.setEmail(email);
-			objC.setId(id);
-			objC.setSemester(semester);
-			objC.setAvatar(avatar);
-			objC.setAge(age);
-			objC.setBirthday(birthday);
-			objC.setProgram(program);
+			if(objC != null) {
+				objC.setName(name);
+				objC.setLastName(lastName);
+				objC.setTelephone(telephone);
+				objC.setEmail(email);
+				objC.setId(id);
+				objC.setSemester(semester);
+				objC.setAvatar(avatar);
+				objC.setAge(age);
+				objC.setBirthday(birthday);
+				objC.setProgram(program);
+			}else {
+				
+			}
+			
 		}
-	
+		
+		public void deleteContactById(String id) {
+			Contact contact = searchById(id);
+			if(contact != null){
+				for(int i = 0; i < contacts.size(); i++) {
+					if(contact.equals((contacts).get(i))) {
+						contacts.remove(i);
+					}
+				}
+			}
+		}
+		
+		public void deleteContactByBirthday(String birthday) {
+			Contact contact = searchById(birthday);
+			for(int i = 0; i < contacts.size(); i++) {
+				if(contact.equals((contacts).get(i))) {
+					contacts.remove(i);
+					
+				}
+			}
+		}
+		public void addContact(String name, String lastName, String telephone, String email, String id, int semester, String avatar,
+				String birthday, int age, String program) {
+			Contact contact = searchById(id);
+			if(contact == null) {
+				contact = new Contact(name, lastName, telephone, email, id, semester, avatar, birthday,age,program);
+				contacts.add(contact);
+			}
+		}
 	
 }
