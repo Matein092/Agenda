@@ -153,4 +153,14 @@ public class Contact {
 		}
 		
 	}
+
+	@Override
+	public String toString() {
+		return "Contact [name=" + name + ", lastName=" + lastName + ", telephone=" + telephone + ", email=" + email
+				+ ", id=" + id + ", semester=" + semester + ", avatar=" + avatar + ", birthday=" + birthday + ", age="
+				+ age + ", program=" + program + ", subjects=" + subjects + "]";
+	}
+	
+	
+	
 }

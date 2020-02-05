@@ -3,10 +3,9 @@ import java.io.*;
 import java.util.*;
 
 	public class Schedule {
-		
-		//Constants
-		public final static String CSV = "..\\..\\Materias.csv";
-		
+	
+		public enum CRITERIO {NAME,LASTNAME,TELEPHONE,EMAIL,ID,SEMESTER,AGE,}
+	
 		//Association
 		private List<Contact> contacts;
 		
@@ -15,25 +14,34 @@ import java.util.*;
 			contacts = new ArrayList<Contact>();
 		}
 		
-		public void chargeData() throws FileNotFoundException {
-			FileReader fr = new FileReader("");
+	
+		public void chargeData(File file) throws FileNotFoundException {
+			FileReader fr = new FileReader(file);
 			BufferedReader bF = new BufferedReader(fr);
 			String line;
-			String[] data;
 			Contact contact;
 			try {
-				while((line = bF.readLine()) != null){
-					data = line.split(",");
-					contact = new Contact(data[0], data[1], data[2], data[3], data[4], Integer.parseInt(data[5]), data[6], data[7], Integer.parseInt(data[8]), data[9]);
+			while ((line = bF.readLine()) != null) {
+				if (line.charAt(0) != '#') {
+					String[] data = line.split(";");
+					contact = new Contact(data[0], data[1], data[2], data[3], data[4], Integer.parseInt(data[5]),
+							data[6], data[7], Integer.parseInt(data[8]), data[9]);
 					contacts.add(contact);
-					
+					//System.out.println(contact.toString());
 				}
+			}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 		}
+		
+		
+
+		
+		
+		
 		
 		public Contact searchById(String id) {
 			Contact objContact = null;
@@ -124,5 +132,16 @@ import java.util.*;
 				contacts.add(contact);
 			}
 		}
+
+
+		public List<Contact> getContacts() {
+			return contacts;
+		}
+		
+		
+		
+		
+		
+		
 	
 }
