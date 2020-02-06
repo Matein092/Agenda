@@ -42,7 +42,7 @@ public class ScheduleController implements Initializable {
 	    @FXML private Button btDeleteContact;
 	    @FXML private Button btUpdateContact;
 	    @FXML private TextField tfSearch;
-	    @FXML private ComboBox<CRITERIO> cbCriterio;
+	    @FXML private ComboBox<String> cbCriterio;
 	    @FXML private TextField tfNRC;
 	    @FXML private TextField tfCreditHours;
 	    @FXML private TextField tfInstructor;
@@ -85,8 +85,8 @@ public class ScheduleController implements Initializable {
 		pos = 0;
 
 
-    	//cbCriterio.getItems().addAll("NAME","LASTNAME","TELEPHONE","EMAIL","ID","SEMESTER","AGE");
-        cbCriterio.getItems().addAll(
+    	cbCriterio.getItems().addAll("NAME","LASTNAME","TELEPHONE","EMAIL","ID","SEMESTER","AGE");
+        /**cbCriterio.getItems().addAll(
         		Schedule.CRITERIO.NAME,
         		Schedule.CRITERIO.LASTNAME,
         		Schedule.CRITERIO.TELEPHONE,
@@ -94,7 +94,7 @@ public class ScheduleController implements Initializable {
         		Schedule.CRITERIO.ID,
         		Schedule.CRITERIO.SEMESTER,
         		Schedule.CRITERIO.AGE);
-
+          **/
 	
         
       }
