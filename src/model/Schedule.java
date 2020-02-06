@@ -4,8 +4,6 @@ import java.util.*;
 
 	public class Schedule {
 	
-		public enum CRITERIO {NAME,LASTNAME,TELEPHONE,EMAIL,ID,SEMESTER,AGE,}
-	
 		//Association
 		//private List<Contact> contacts;
 		

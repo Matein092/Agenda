@@ -16,8 +16,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Contact;
 import model.Schedule;
-import model.Schedule.CRITERIO;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -80,12 +78,9 @@ public class ScheduleController implements Initializable {
 	    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
 		schedule = new Schedule();
 		pos = 0;
-
-		cbCriterio.getItems().addAll("NAME","LASTNAME","TELEPHONE","EMAIL","ID","SEMESTER","AGE");
-               
+    	cbCriterio.getItems().addAll("NAME","LASTNAME","TELEPHONE","EMAIL","ID","SEMESTER","AGE");
       }
 
 	@FXML
@@ -133,31 +128,42 @@ public class ScheduleController implements Initializable {
 	
 	public void printContact(Contact contact) {
 		
+		lbName.setText("");
 		if(!contact.getName().equals("")) {
 			lbName.setText(contact.getName());
 		}
 		
+		lbLastName.setText("");
 		lbLastName.setText(contact.getLastName());
 		
+		tfCode.setText("");
 		tfCode.setText(contact.getId());
 		
+		tfTelephone.setText("");
 		tfTelephone.setText(contact.getTelephone());
 		
+		tfEmail.setText("");
 		tfEmail.setText(contact.getEmail());
 		
+		ivPhoto.setVisible(false);
 		if(!contact.getAvatar().equals("")) {
 			ivPhoto.setImage(new Image(contact.getAvatar().toString()));
+		    ivPhoto.setVisible(true);
 		}
 		
+		tfCareer.setText("");
 		tfCareer.setText(contact.getProgram());
 		
+		dpBornDate.setPromptText("");
 		dpBornDate.setPromptText(contact.getBirthday());
+		dpBornDate.setEditable(false);
 		
+		tfSemester.setText("");
 		tfSemester.setText(contact.getSemester()+"");
 		
+		tfAge.setText("");
 		tfAge.setText(contact.getAge()+"");
 		
-
 	}
 
 	@FXML
