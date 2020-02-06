@@ -133,7 +133,7 @@ import java.util.*;
 			}
 		}
 
-
+		
 		public List<Contact> getContacts() {
 			return contacts;
 		}
