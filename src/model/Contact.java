@@ -16,7 +16,8 @@ public class Contact {
 	private String program;
 	
 	//Association
-	private List<Subject> subjects;
+	//private List<Subject> subjects;
+	private HashMap<Integer, Subject> subj;
 		
 	//Constructor
 	public Contact(String name, String lastName, String telephone, String email, String id, int semester, String avatar,
@@ -31,8 +32,8 @@ public class Contact {
 		this.birthday = birthday;
 		this.age = age;
 		this.program = program;
-		subjects = new ArrayList<Subject>();
-		
+		//subjects = new ArrayList<Subject>();
+		subj = new HashMap<Integer, Subject>();
 	}
 	
 	public String getName() {
@@ -116,26 +117,33 @@ public class Contact {
 		this.program = program;
 	}
 	
-	public List<Subject> getSubjects() {
-		return subjects;
-	}
+	/*
+	 * public List<Subject> getSubjects() { return subjects; }
+	 * 
+	 * public void setSubjects(List<Subject> subjects) { this.subjects = subjects; }
+	 */
 	
-	public void setSubjects(List<Subject> subjects) {
-		this.subjects = subjects;
-	}
 	
 	public Subject searchSubject(int nrc){
 		Subject objSubject = null;
-		for(int i = 0; i < subjects.size(); i++) {
-			if(subjects.get(i).getNrc() == nrc ) {
-				objSubject = new Subject(subjects.get(i).getName(),subjects.get(i).getNrc(),  subjects.get(i).getEnrolledStudent(), subjects.get(i).getTeacherName(), subjects.get(i).getTeacherEmail(), subjects.get(i).getMonitorName(), subjects.get(i).getMonitorEmail(), subjects.get(i).getDepartment(), subjects.get(i).getGroup());
+		//for(int i = 0; i < subjects.size(); i++) {
+			if(subj.get(nrc).getNrc() == nrc ) {
+				objSubject = new Subject(subj.get(nrc).getName(),subj.get(nrc).getNrc(),  subj.get(nrc).getEnrolledStudent(), subj.get(nrc).getTeacherName(), subj.get(nrc).getTeacherEmail(), subj.get(nrc).getMonitorName(), subj.get(nrc).getMonitorEmail(), subj.get(nrc).getDepartment(), subj.get(nrc).getGroup());
 			}else {
 				
 			}
-		}
+		//}
 		return objSubject;
 	}
 	
+	public HashMap<Integer, Subject> getSubj() {
+		return subj;
+	}
+
+	public void setSubj(HashMap<Integer, Subject> subj) {
+		this.subj = subj;
+	}
+
 	public void modifySubject(String name, int nrc, int enrolledStudent, String teacherName, String teacherEmail,
 			String monitorName, String monitorEmail, String department, int group) {
 		Subject objS = searchSubject(nrc);
@@ -158,7 +166,7 @@ public class Contact {
 	public String toString() {
 		return "Contact [name=" + name + ", lastName=" + lastName + ", telephone=" + telephone + ", email=" + email
 				+ ", id=" + id + ", semester=" + semester + ", avatar=" + avatar + ", birthday=" + birthday + ", age="
-				+ age + ", program=" + program + ", subjects=" + subjects + "]";
+				+ age + ", program=" + program + ", subjects=" + subj + "]";
 	}
 	
 	
