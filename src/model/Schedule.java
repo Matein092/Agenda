@@ -11,11 +11,14 @@ import java.util.*;
 		
 		private HashMap<String, Contact> contId;
 		private HashMap<String, Contact> contBd;
+		private int size;
+		private HashMap<Integer, Contact> contacts;
 		//Constructor
 		public Schedule() {
 			//contacts = new ArrayList<Contact>();
 			contId = new HashMap<String, Contact>();
 			contBd = new HashMap<String, Contact>();
+			contacts = new HashMap<Integer, Contact>();
 		}
 		
 	
@@ -32,6 +35,9 @@ import java.util.*;
 							data[6], data[7], Integer.parseInt(data[8]), data[9]);
 					contId.put(contact.getId(), contact);
 					contBd.put(contact.getBirthday(), contact);
+					size++;
+					int index = size-1;
+					contacts.put(index, contact);
 					//System.out.println(contact.toString());
 				}
 			}
@@ -140,6 +146,9 @@ import java.util.*;
 				contact = new Contact(name, lastName, telephone, email, id, semester, avatar, birthday,age,program);
 				contId.put(id, contact);
 				contBd.put(birthday, contact);
+				size++;
+				int index = size-1;
+				contacts.put(index, contact);
 			}
 		}
 
@@ -152,6 +161,18 @@ import java.util.*;
 		public HashMap<String, Contact> getContBd() {
 			return contBd;
 		}
+
+
+		public int getSize() {
+			return size;
+		}
+
+
+		public HashMap<Integer, Contact> getContacts() {
+			return contacts;
+		}
+		
+		
 
 	/*
 	 * public List<Contact> getContacts() { return contacts; }
