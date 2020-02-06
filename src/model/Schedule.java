@@ -7,11 +7,15 @@ import java.util.*;
 		public enum CRITERIO {NAME,LASTNAME,TELEPHONE,EMAIL,ID,SEMESTER,AGE,}
 	
 		//Association
-		private List<Contact> contacts;
+		//private List<Contact> contacts;
 		
+		private HashMap<String, Contact> contId;
+		private HashMap<String, Contact> contBd;
 		//Constructor
 		public Schedule() {
-			contacts = new ArrayList<Contact>();
+			//contacts = new ArrayList<Contact>();
+			contId = new HashMap<String, Contact>();
+			contBd = new HashMap<String, Contact>();
 		}
 		
 	
@@ -26,7 +30,8 @@ import java.util.*;
 					String[] data = line.split(";");
 					contact = new Contact(data[0], data[1], data[2], data[3], data[4], Integer.parseInt(data[5]),
 							data[6], data[7], Integer.parseInt(data[8]), data[9]);
-					contacts.add(contact);
+					contId.put(contact.getId(), contact);
+					contBd.put(contact.getBirthday(), contact);
 					//System.out.println(contact.toString());
 				}
 			}
@@ -43,26 +48,31 @@ import java.util.*;
 		
 		
 		
+		/**
+		 * @param id
+		 * @return
+		 */
 		public Contact searchById(String id) {
 			Contact objContact = null;
-			for(int i = 0; i < contacts.size(); i++) {
-				if(contacts.get(i).getId() == id) {
-					objContact = new Contact(contacts.get(i).getName(),contacts.get(i).getLastName(),  contacts.get(i).getTelephone(), contacts.get(i).getEmail(), contacts.get(i).getId(), contacts.get(i).getSemester(), contacts.get(i).getAvatar(), contacts.get(i).getBirthday(), contacts.get(i).getAge(), contacts.get(i).getProgram());
+			//for(int i = 0; i < contacts.size(); i++) {
+				if(contId.get(id).getId() == id) {
+					objContact = new Contact(contId.get(id).getName(),contId.get(id).getLastName(),  contId.get(id).getTelephone(), contId.get(id).getEmail(), contId.get(id).getId(), contId.get(id).getSemester(), contId.get(id).getAvatar(), contId.get(id).getBirthday(), contId.get(id).getAge(), contId.get(id).getProgram());
 				}else {
 					
-				}
+			//	}
 			}
+			
 			return objContact;
 		}
 		
 		public Contact searchByBirthDay(String birthday) {
 			Contact objContact = null;
-			for(int i = 0; i < contacts.size(); i++) {
-				if(contacts.get(i).getId() == birthday) {
-					objContact = new Contact(contacts.get(i).getName(),contacts.get(i).getLastName(),  contacts.get(i).getTelephone(), contacts.get(i).getEmail(), contacts.get(i).getId(), contacts.get(i).getSemester(), contacts.get(i).getAvatar(), contacts.get(i).getBirthday(), contacts.get(i).getAge(), contacts.get(i).getProgram());
+			//for(int i = 0; i < contacts.size(); i++) {
+				if(contBd.get(birthday).getBirthday() == birthday) {
+					objContact = new Contact(contBd.get(birthday).getName(),contBd.get(birthday).getLastName(), contBd.get(birthday).getTelephone(), contBd.get(birthday).getEmail(), contBd.get(birthday).getId(), contBd.get(birthday).getSemester(), contBd.get(birthday).getAvatar(), contBd.get(birthday).getBirthday(), contBd.get(birthday).getAge(), contBd.get(birthday).getProgram());
 				}else {
 					
-				}
+				//}
 			}
 			return objContact;
 		}
@@ -86,7 +96,7 @@ import java.util.*;
 		
 		public void modifyContactByBirthDay(String name, String lastName, String telephone, String email, String id, int semester, String avatar,
 				String birthday, int age, String program) {
-			Contact objC = searchById(birthday);
+			Contact objC = searchByBirthDay(birthday);
 			if(objC != null) {
 				objC.setName(name);
 				objC.setLastName(lastName);
@@ -107,21 +117,20 @@ import java.util.*;
 		public void deleteContactById(String id) {
 			Contact contact = searchById(id);
 			if(contact != null){
-				for(int i = 0; i < contacts.size(); i++) {
-					if(contact.equals((contacts).get(i))) {
-						contacts.remove(i);
-					}
-				}
+				//for(int i = 0; i < contacts.size(); i++) {
+					//if(contact.equals((contacts).get(i))) {
+						contId.remove(id);
+					//}
+				//}
 			}
 		}
 		
 		public void deleteContactByBirthday(String birthday) {
-			Contact contact = searchById(birthday);
-			for(int i = 0; i < contacts.size(); i++) {
-				if(contact.equals((contacts).get(i))) {
-					contacts.remove(i);
-					
-				}
+			Contact contact = searchByBirthDay(birthday);
+			if(contact != null) {
+			//for(int i = 0; i < contacts.size(); i++) {
+				//if(contact.equals((contacts).get(i))) {
+					contBd.remove(birthday);
 			}
 		}
 		public void addContact(String name, String lastName, String telephone, String email, String id, int semester, String avatar,
@@ -129,15 +138,24 @@ import java.util.*;
 			Contact contact = searchById(id);
 			if(contact == null) {
 				contact = new Contact(name, lastName, telephone, email, id, semester, avatar, birthday,age,program);
-				contacts.add(contact);
+				contId.put(id, contact);
+				contBd.put(birthday, contact);
 			}
 		}
 
 
-		public List<Contact> getContacts() {
-			return contacts;
+		public HashMap<String, Contact> getContId() {
+			return contId;
 		}
-		
+
+
+		public HashMap<String, Contact> getContBd() {
+			return contBd;
+		}
+
+	/*
+	 * public List<Contact> getContacts() { return contacts; }
+	 */
 		
 		
 		
