@@ -180,6 +180,13 @@ import java.util.*;
 			}
 		}
 		
+		/**
+		 * 
+		 * @param a Array with all the subjects of all the students 
+		 * @param first
+		 * @param last
+		 * @return nrc of the most repeated subject
+		 */
 		public int mode(int a[], int first, int last) {
 			int i, frec, maxfrec, moda;
 			if (first == last) return a[first];
