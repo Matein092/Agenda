@@ -5,6 +5,7 @@ import java.util.*;
 	public class Schedule {
 	
 		//Association
+		
 		//private List<Contact> contacts;
 		
 		private HashMap<String, Contact> contId;
@@ -150,11 +151,7 @@ import java.util.*;
 			}
 		}
 
-<<<<<<< HEAD
 		
-		public List<Contact> getContacts() {
-=======
-
 		public HashMap<String, Contact> getContId() {
 			return contId;
 		}
@@ -171,15 +168,8 @@ import java.util.*;
 
 
 		public HashMap<Integer, Contact> getContacts() {
->>>>>>> weirdChanges
 			return contacts;
 		}
-		
-		
-
-	/*
-	 * public List<Contact> getContacts() { return contacts; }
-	 */
 		
 		
 		

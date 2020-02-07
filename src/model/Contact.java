@@ -16,7 +16,7 @@ public class Contact {
 	private String program;
 	
 	//Association
-	//private List<Subject> subjects;
+	private List<Subject> subjects;
 	private HashMap<Integer, Subject> subj;
 		
 	//Constructor
@@ -164,19 +164,12 @@ public class Contact {
 
 	public String showSubjectByNrc(int nrc) {
 		String msg = " ";
-<<<<<<< HEAD
 		for(int i = 0; i < subjects.size(); i++) {
 			if(subjects.get(i).getNrc() == nrc) {
 				msg = subjects.get(i).toString();
 			}
 		}
-=======
-		//for(int i = 0; i < subjects.size(); i++) {
-			//if(subjects.get(i).getNrc() == nrc) {
-				msg = subj.get(nrc).toString();
-			//}
-		//}
->>>>>>> weirdChanges
+
 		return msg;
 	}
 	
@@ -185,17 +178,16 @@ public class Contact {
 		Subject subject = searchSubject(nrc);
 		if(subject == null) {
 			subject = new Subject(name, nrc, enrolledStudent, teacherName, teacherEmail, monitorName, monitorEmail, department,group);
-<<<<<<< HEAD
+
 			subjects.add(subject);
-=======
+
 			subj.put(nrc, subject);
->>>>>>> weirdChanges
+
 		}
 	}
 	
 	public void deleteSubject(int nrc) {
 		Subject contact = searchSubject(nrc);
-<<<<<<< HEAD
 		for(int i = 0; i < subjects.size(); i++) {
 			if(contact.equals((subjects).get(i))) {
 				subjects.remove(i);
@@ -203,16 +195,7 @@ public class Contact {
 			}
 		}
 	}
-=======
-		//for(int i = 0; i < subjects.size(); i++) {
-			//if(contact.equals((subjects).get(i))) {
-				subj.remove(nrc);
-				
-			//}
-		//}
-	}
-	
->>>>>>> weirdChanges
+
 	@Override
 	public String toString() {
 		return "Contact [name=" + name + ", lastName=" + lastName + ", telephone=" + telephone + ", email=" + email

@@ -80,24 +80,8 @@ public class ScheduleController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 		schedule = new Schedule();
 		pos = 0;
-<<<<<<< HEAD
-
-
     	cbCriterio.getItems().addAll("NAME","LASTNAME","TELEPHONE","EMAIL","ID","SEMESTER","AGE");
-        /**cbCriterio.getItems().addAll(
-        		Schedule.CRITERIO.NAME,
-        		Schedule.CRITERIO.LASTNAME,
-        		Schedule.CRITERIO.TELEPHONE,
-        		Schedule.CRITERIO.EMAIL,
-        		Schedule.CRITERIO.ID,
-        		Schedule.CRITERIO.SEMESTER,
-        		Schedule.CRITERIO.AGE);
-          **/
-	
-        
-=======
-    	cbCriterio.getItems().addAll("NAME","LASTNAME","TELEPHONE","EMAIL","ID","SEMESTER","AGE");
->>>>>>> weirdChanges
+
       }
 
 	@FXML
@@ -162,10 +146,13 @@ public class ScheduleController implements Initializable {
 		tfEmail.setText("");
 		tfEmail.setText(contact.getEmail());
 		
-		ivPhoto.setVisible(false);
-		if(!contact.getAvatar().equals("")) {
-			ivPhoto.setImage(new Image(contact.getAvatar().toString()));
-		    ivPhoto.setVisible(true);
+		
+		if(!contact.getAvatar().equals("") ) {
+			System.out.println(contact.getAvatar().toString());
+			ivPhoto.setImage(new Image(contact.getAvatar()));
+			
+		}else {
+			ivPhoto.setImage(new Image(".\\img\\Contact.jpg"));
 		}
 		
 		tfCareer.setText("");
@@ -185,16 +172,20 @@ public class ScheduleController implements Initializable {
 
 	@FXML
 	public void passBackContact() {
-		if (pos>=0) {
+		if (pos>0) {
 			pos -= 1;
+			printContacts();
+		}else if(pos==0) {
 			printContacts();
 		}
 	}
 	
 	@FXML 
 	public void passNextContact() {
-		if (pos < schedule.getContacts().size()) {
+		if (pos < schedule.getSize()-1) {
 			pos+=1;
+			printContacts();
+		}else if(pos == schedule.getSize()-1){
 			printContacts();
 		}
 		
