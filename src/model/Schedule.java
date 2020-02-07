@@ -180,10 +180,35 @@ import java.util.*;
 			}
 		}
 		
+		public int mode(int a[], int first, int last) {
+			int i, frec, maxfrec, moda;
+			if (first == last) return a[first];
+			moda = a[first];
+			maxfrec = frequency(a, a[first], first, last);
+			for (i = first + 1; i<=last; i++) {
+				frec = frequency (a, a[i], i, last);
+				if (frec > maxfrec) {
+					maxfrec = frec;
+					moda = a[i];
+				}
+			}
+			return moda;
+		}
+				
+		private int frequency(int[] a, int p, int first, int last) {
+			int sum;
+			if (first > last) return 0;
+			sum = 0;
+			for (int i = first; i<= last; i++)
+				if(a[i] == p)
+					sum++;
+	 
+			return sum;
+		}
+
 		public HashMap<String, Contact> getContId() {
 			return contId;
 		}
-
 
 		public HashMap<String, Contact> getContBd() {
 			return contBd;
