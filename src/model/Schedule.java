@@ -179,7 +179,6 @@ import java.util.*;
 				contacts.put(index, contact);
 			}
 		}
-
 		
 		public HashMap<String, Contact> getContId() {
 			return contId;
@@ -199,10 +198,10 @@ import java.util.*;
 		public HashMap<Integer, Contact> getContacts() {
 			return contacts;
 		}
+
+
+		public HashMap<String, Contact> getContEm() {
+			return contEm;
+		}
 		
-		
-		
-		
-		
-	
 }
