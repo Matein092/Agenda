@@ -1,8 +1,8 @@
 package model;
 
 public class Subject {
-	
-	//Attributes
+
+	// Attributes
 	private String name;
 	private int nrc;
 	private int enrolledStudent;
@@ -12,7 +12,7 @@ public class Subject {
 	private String monitorEmail;
 	private String department;
 	private int group;
-	
+
 	public Subject(String name, int nrc, int enrolledStudent, String teacherName, String teacherEmail,
 			String monitorName, String monitorEmail, String department, int group) {
 		this.name = name;
@@ -97,10 +97,5 @@ public class Subject {
 	public void setGroup(int group) {
 		this.group = group;
 	}
-	
-	
-	
-	
-	
-	
+
 }

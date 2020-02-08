@@ -22,47 +22,22 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="808.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ScheduleController">
   <tabs>
-      <Tab text="Cargar Contactos">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <VBox alignment="CENTER" layoutX="109.0" layoutY="209.0" prefHeight="114.0" prefWidth="591.0" spacing="20.0">
-                     <children>
-                        <Label text="Carga la lista de estudiantes" />
-                        <HBox alignment="CENTER" prefHeight="56.0" prefWidth="479.0" spacing="20.0">
-                           <children>
-                              <TextField fx:id="tfContactPath" alignment="CENTER" prefHeight="25.0" prefWidth="279.0" />
-                              <Button fx:id="btExplorer" mnemonicParsing="false" onAction="#explorerClick" text="Explorar" />
-                              <Button fx:id="btloadContact" mnemonicParsing="false" onAction="#loadContacsClick" text="Cargar Contactos" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-                  <Label fx:id="lbMenLoad" layoutX="187.0" layoutY="332.0" prefHeight="17.0" prefWidth="435.0" />
-               </children>
-            </AnchorPane>
-        </content>
-      </Tab>
     <Tab text="Administrador de Contactos">
       <content>
             <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <VBox alignment="CENTER" layoutX="14.0" layoutY="47.0" prefHeight="160.0" prefWidth="244.0" spacing="20.0" style="-fx-background-color: #e8e8e8;">
+                        <VBox alignment="CENTER" layoutX="14.0" layoutY="47.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="176.0" prefWidth="244.0" spacing="5.0" style="-fx-background-color: #e8e8e8;">
                            <children>
                               <ImageView fx:id="ivPhoto" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../img/Contact.jpg" />
                                  </image></ImageView>
-                              <HBox alignment="CENTER" spacing="10.0">
+                              <HBox alignment="CENTER" spacing="1.0">
                                  <children>
-                                    <Label fx:id="lbName" text="Nombre">
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="lbLastName" />
+                                    <TextField fx:id="tfName" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: #cfcfcf;" />
+                                    <TextField fx:id="tfLastName" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #cfcfcf;" />
                                  </children>
                               </HBox>
                            </children>
@@ -103,19 +78,19 @@
                            </children></HBox>
                         <HBox alignment="CENTER" layoutX="284.0" layoutY="227.0" prefHeight="32.0" prefWidth="502.0" spacing="10.0" style="-fx-background-color: #e8e8e8;">
                            <children>
-                              <Button fx:id="btNewContact" mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Nuevo Contacto" textAlignment="CENTER">
+                              <Button fx:id="btNewContact" mnemonicParsing="false" onAction="#newContactClick" style="-fx-background-color: #bababa;" text="Nuevo Contacto" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Button>
-                              <Button fx:id="btSaveContact" mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Guardar Contacto" textAlignment="CENTER">
+                              <Button fx:id="btSaveContact" mnemonicParsing="false" onAction="#saveContactClick" style="-fx-background-color: #bababa;" text="Guardar Contacto" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Button>
-                              <Button fx:id="btDeleteContact" mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Eliminar Contacto" textAlignment="CENTER">
+                              <Button fx:id="btDeleteContact" mnemonicParsing="false" onAction="#deleteContactClick" style="-fx-background-color: #bababa;" text="Eliminar Contacto" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Button>
-                              <Button fx:id="btUpdateContact" mnemonicParsing="false" style="-fx-background-color: #bababa;" text="Actualizar Contacto" textAlignment="CENTER">
+                              <Button fx:id="btUpdateContact" mnemonicParsing="false" onAction="#updateContactClick" style="-fx-background-color: #bababa;" text="Actualizar Contacto" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Button>
