@@ -4,7 +4,7 @@ public class Subject {
 	
 	//Attributes
 	private String name;
-	private int nrc;
+	private String nrc;
 	private int enrolledStudent;
 	private String teacherName;
 	private String teacherEmail;
@@ -13,7 +13,7 @@ public class Subject {
 	private String department;
 	private int group;
 	
-	public Subject(String name, int nrc, int enrolledStudent, String teacherName, String teacherEmail,
+	public Subject(String name, String nrc, int enrolledStudent, String teacherName, String teacherEmail,
 			String monitorName, String monitorEmail, String department, int group) {
 		this.name = name;
 		this.nrc = nrc;
