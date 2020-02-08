@@ -181,36 +181,73 @@ import java.util.*;
 		}
 		
 		/**
-		 * 
+		 * Returns a Set with all the Keys of the HashMap subj in class Contact
+		 * @return a Set with the NRC of all the subjects
+		 */
+		private HashSet<Integer> allSubjects(){
+			Set<Integer> subjects = new HashSet<Integer>();
+			for (int i = 0; i < contacts.size(); i++) {
+				Set<Integer> subj = contacts.get(i).getSubj().keySet();
+				subjects.addAll(subj);
+			}
+			return (HashSet<Integer>) subjects;
+		}
+		
+		/**
+		 * This method allows to find the NRC of the most enrolled subject
 		 * @param a Array with all the subjects of all the students 
 		 * @param first
 		 * @param last
-		 * @return nrc of the most repeated subject
+		 * @return nrc of the most enrolled subject
 		 */
-		public int mode(int a[], int first, int last) {
-			int i, frec, maxfrec, moda;
-			if (first == last) return a[first];
-			moda = a[first];
-			maxfrec = frequency(a, a[first], first, last);
-			for (i = first + 1; i<=last; i++) {
-				frec = frequency (a, a[i], i, last);
+		public int mode() {
+			HashSet<Integer> s = allSubjects();
+			int frec, maxfrec, mode=0;
+			Object[] A = s.toArray();
+			int[] array = new int[A.length];
+			for (int j = 0; j < array.length; j++) {
+				array[j] = (int) A[j];
+			}
+			int first = 0;
+			int last = array.length;
+			if (first == last) {
+				return array[first];
+			}
+			maxfrec = frequency(array, array[first], first, last);
+			for (int i = first + 1; i<=last; i++) {
+				frec = frequency (array, array[i], i, last);
 				if (frec > maxfrec) {
 					maxfrec = frec;
-					moda = a[i];
+					mode = array[i];
 				}
 			}
-			return moda;
+			return mode;
 		}
-				
-		private int frequency(int[] a, int p, int first, int last) {
+		/**
+		 * Auxiliary method of mode method	
+		 * @param array
+		 * @param p
+		 * @param first
+		 * @param last
+		 * @return
+		 */
+		private int frequency(int[] array, int p, int first, int last) {
 			int sum;
-			if (first > last) return 0;
+			if (first > last) { 
+				return 0;
+			}				
 			sum = 0;
-			for (int i = first; i<= last; i++)
-				if(a[i] == p)
+			for (int i = first; i<= last; i++) {
+				if(array[i] == p) {
 					sum++;
-	 
+				}	
+			}
 			return sum;
+		}
+		
+		public int avrage() {
+			//subject.ge
+			return 0;
 		}
 
 		public HashMap<String, Contact> getContId() {
