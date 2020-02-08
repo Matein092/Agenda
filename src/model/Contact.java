@@ -123,6 +123,9 @@ public class Contact {
 	 * public void setSubjects(List<Subject> subjects) { this.subjects = subjects; }
 	 */
 
+	
+	
+	/**
 	public Subject searchSubject(int nrc) {
 		Subject objSubject = null;
 		// for(int i = 0; i < subjects.size(); i++) {
@@ -137,6 +140,8 @@ public class Contact {
 		// }
 		return objSubject;
 	}
+	
+	*/
 
 	public HashMap<Integer, Subject> getSubj() {
 		return subj;
@@ -146,6 +151,8 @@ public class Contact {
 		this.subj = subj;
 	}
 
+	
+	/**
 	public void modifySubject(String name, int nrc, int enrolledStudent, String teacherName, String teacherEmail,
 			String monitorName, String monitorEmail, String department, int group) {
 		Subject objS = searchSubject(nrc);
@@ -164,6 +171,9 @@ public class Contact {
 
 	}
 
+*/
+	
+	
 	public String showSubjectByNrc(int nrc) {
 		String msg = " ";
 		// for(int i = 0; i < subjects.size(); i++) {
@@ -175,6 +185,8 @@ public class Contact {
 		return msg;
 	}
 
+	
+	/**
 	public void addSubject(String name, int nrc, int enrolledStudent, String teacherName, String teacherEmail,
 			String monitorName, String monitorEmail, String department, int group) {
 		Subject subject = searchSubject(nrc);
@@ -189,6 +201,7 @@ public class Contact {
 		}
 	}
 
+*/
 	public void deleteSubject(int nrc) {
 		// Subject contact = searchSubject(nrc);
 		// for(int i = 0; i < subjects.size(); i++) {

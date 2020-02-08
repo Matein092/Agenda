@@ -12,13 +12,9 @@ public class Subject {
 	private String monitorEmail;
 	private String department;
 	private int group;
-<<<<<<< HEAD
-
-	public Subject(String name, int nrc, int enrolledStudent, String teacherName, String teacherEmail,
-=======
 	
 	public Subject(String name, String nrc, int enrolledStudent, String teacherName, String teacherEmail,
->>>>>>> master
+
 			String monitorName, String monitorEmail, String department, int group) {
 		this.name = name;
 		this.nrc = nrc;
@@ -39,11 +35,11 @@ public class Subject {
 		this.name = name;
 	}
 
-	public int getNrc() {
+	public String getNrc() {
 		return nrc;
 	}
 
-	public void setNrc(int nrc) {
+	public void setNrc(String nrc) {
 		this.nrc = nrc;
 	}
 
