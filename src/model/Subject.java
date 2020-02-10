@@ -5,26 +5,17 @@ public class Subject {
 	// Attributes
 	private String name;
 	private String nrc;
-	private int enrolledStudent;
 	private String teacherName;
-	private String teacherEmail;
-	private String monitorName;
-	private String monitorEmail;
-	private String department;
-	private int group;
+	private int creditHours;
+	private int enrolledStudent;
 	
-	public Subject(String name, String nrc, int enrolledStudent, String teacherName, String teacherEmail,
-
-			String monitorName, String monitorEmail, String department, int group) {
+	public Subject(String name, String nrc, String teacherName, int creditHours) {
 		this.name = name;
 		this.nrc = nrc;
 		this.teacherName = teacherName;
-		this.enrolledStudent = enrolledStudent;
-		this.teacherEmail = teacherEmail;
-		this.monitorName = monitorName;
-		this.monitorEmail = monitorEmail;
-		this.department = department;
-		this.group = group;
+		this.creditHours = creditHours;
+		this.enrolledStudent = 0;
+
 	}
 
 	public String getName() {
@@ -51,6 +42,14 @@ public class Subject {
 		this.teacherName = teacherName;
 	}
 
+	public int getCreditHours() {
+		return creditHours;
+	}
+
+	public void setCreditHours(int creditHours) {
+		this.creditHours = creditHours;
+	}
+
 	public int getEnrolledStudent() {
 		return enrolledStudent;
 	}
@@ -59,44 +58,6 @@ public class Subject {
 		this.enrolledStudent = enrolledStudent;
 	}
 
-	public String getTeacherEmail() {
-		return teacherEmail;
-	}
 
-	public void setTeacherEmail(String teacherEmail) {
-		this.teacherEmail = teacherEmail;
-	}
-
-	public String getMonitorName() {
-		return monitorName;
-	}
-
-	public void setMonitorName(String monitorName) {
-		this.monitorName = monitorName;
-	}
-
-	public String getMonitorEmail() {
-		return monitorEmail;
-	}
-
-	public void setMonitorEmail(String monitorEmail) {
-		this.monitorEmail = monitorEmail;
-	}
-
-	public String getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-
-	public int getGroup() {
-		return group;
-	}
-
-	public void setGroup(int group) {
-		this.group = group;
-	}
 
 }

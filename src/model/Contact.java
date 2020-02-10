@@ -1,8 +1,14 @@
 package model;
 
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Contact {
+
+	public final static String COURSES_PATH = ".\\data\\Courses.csv";
 
 	// Attributes
 	private String name;
@@ -15,10 +21,12 @@ public class Contact {
 	private String bornDate;
 	private int age;
 	private String program;
+	private ArrayList<String> nrcs;
+
+
 
 	// Association
-	// private List<Subject> subjects;
-	private HashMap<Integer, Subject> subj;
+	private HashMap<String, Subject> subjects;
 
 	// Constructor
 	public Contact(String name, String lastName, String telephone, String email, String id, int semester, String avatar,
@@ -33,8 +41,68 @@ public class Contact {
 		this.bornDate = birthday;
 		this.age = age;
 		this.program = program;
-		// subjects = new ArrayList<Subject>();
-		subj = new HashMap<Integer, Subject>();
+		subjects = new HashMap<String, Subject>();
+		nrcs = new ArrayList<String>();
+	}
+
+	// Métodos
+
+
+	public void loadSubjects() throws IOException {
+
+		BufferedReader bF = new BufferedReader(new FileReader(COURSES_PATH));
+		String line = "";
+
+		while ((line = bF.readLine()) != null) {
+			if (line.charAt(0) != '#') {
+				String[] data = line.split(";");
+				for (int i = 0; i < nrcs.size(); i++) {
+					if (nrcs.get(i).equals(data[2])) {
+						Subject subject = null;
+						subject = new Subject(data[0], data[1], data[2], Integer.parseInt(data[3]));
+						subjects.put(subject.getNrc(), subject);
+					}
+				}
+			}
+
+		}
+		bF.close();
+	}
+
+
+	public Subject searchSubject(String nrc) {
+		Subject objSubject = null;
+		for (Subject subject : subjects.values()) {
+			if (subject.getNrc().equals(nrc)){
+				objSubject = subject;
+			}
+		}
+		return objSubject;
+	}
+
+	public void modifySubject(String name, String nrc, String teacherName, int creditHours) {
+		Subject objS = searchSubject(nrc);
+		if (objS != null) {
+			objS.setName(name);
+			objS.setNrc(nrc);
+			objS.setTeacherName(teacherName);
+			objS.setCreditHours(creditHours);
+		}
+	}
+
+	public void addSubject(String name, String nrc, String teacherName, int creditHours) {
+		Subject subject = searchSubject(nrc);
+		if (subject == null) {
+			subject = new Subject(name, nrc, teacherName, creditHours);
+			subjects.put(nrc, subject);
+		}
+	}
+
+	public void deleteSubject(String nrc) {
+		Subject subject = searchSubject(nrc);
+		if (subject != null){
+			subjects.remove(nrc);
+		}
 	}
 
 	public String getName() {
@@ -117,106 +185,36 @@ public class Contact {
 		this.program = program;
 	}
 
-	/*
-	 * public List<Subject> getSubjects() { return subjects; }
-	 * 
-	 * public void setSubjects(List<Subject> subjects) { this.subjects = subjects; }
-	 */
-
-	
-	
-	/**
-	public Subject searchSubject(int nrc) {
-		Subject objSubject = null;
-		// for(int i = 0; i < subjects.size(); i++) {
-		if (subj.get(nrc).getNrc() == nrc) {
-			objSubject = new Subject(subj.get(nrc).getName(), subj.get(nrc).getNrc(),
-					subj.get(nrc).getEnrolledStudent(), subj.get(nrc).getTeacherName(), subj.get(nrc).getTeacherEmail(),
-					subj.get(nrc).getMonitorName(), subj.get(nrc).getMonitorEmail(), subj.get(nrc).getDepartment(),
-					subj.get(nrc).getGroup());
-		} else {
-
-		}
-		// }
-		return objSubject;
-	}
-	
-	*/
-
-	public HashMap<Integer, Subject> getSubj() {
-		return subj;
+	public HashMap<String, Subject> getSubjects() {
+		return subjects;
 	}
 
-	public void setSubj(HashMap<Integer, Subject> subj) {
-		this.subj = subj;
+	public void setSubjects(HashMap<String, Subject> subjects) {
+		this.subjects = subjects;
 	}
 
-	
-	/**
-	public void modifySubject(String name, int nrc, int enrolledStudent, String teacherName, String teacherEmail,
-			String monitorName, String monitorEmail, String department, int group) {
-		Subject objS = searchSubject(nrc);
-		if (objS != null) {
-			objS.setName(name);
-			objS.setNrc(nrc);
-			objS.setTeacherName(teacherName);
-			objS.setTeacherEmail(teacherEmail);
-			objS.setMonitorName(monitorName);
-			objS.setMonitorEmail(monitorEmail);
-			objS.setDepartment(department);
-			objS.setGroup(group);
-		} else {
-
-		}
-
+	public ArrayList<String> getNrcs() {
+		return nrcs;
 	}
 
-*/
-	
-	
-	public String showSubjectByNrc(int nrc) {
-		String msg = " ";
-		// for(int i = 0; i < subjects.size(); i++) {
-		// if(subjects.get(i).getNrc() == nrc) {
-		msg = subj.get(nrc).toString();
-		// }
-		// }
-
-		return msg;
-	}
-
-	
-	/**
-	public void addSubject(String name, int nrc, int enrolledStudent, String teacherName, String teacherEmail,
-			String monitorName, String monitorEmail, String department, int group) {
-		Subject subject = searchSubject(nrc);
-		if (subject == null) {
-			subject = new Subject(name, nrc, enrolledStudent, teacherName, teacherEmail, monitorName, monitorEmail,
-					department, group);
-
-			// subjects.add(subject);
-
-			subj.put(nrc, subject);
-
-		}
-	}
-
-*/
-	public void deleteSubject(int nrc) {
-		// Subject contact = searchSubject(nrc);
-		// for(int i = 0; i < subjects.size(); i++) {
-		// if(contact.equals((subjects).get(i))) {
-		subj.remove(nrc);
-
-		// }
-		// }
+	public void setNrcs(ArrayList<String> nrcs) {
+		this.nrcs = nrcs;
 	}
 
 	@Override
-	public String toString() {
-		return "Contact [name=" + name + ", lastName=" + lastName + ", telephone=" + telephone + ", email=" + email
-				+ ", id=" + id + ", semester=" + semester + ", avatar=" + avatar + ", birthday=" + bornDate + ", age="
-				+ age + ", program=" + program + ", subjects=" + subj + "]";
-	}
-
+    public java.lang.String toString() {
+        return "Contact{" +
+                       "name=" + name +
+                       ", lastName=" + lastName +
+                       ", telephone=" + telephone +
+                       ", email=" + email +
+                       ", id=" + id +
+                       ", semester=" + semester +
+                       ", avatar=" + avatar +
+                       ", bornDate=" + bornDate +
+                       ", age=" + age +
+                       ", program=" + program +
+                       ", subj=" + subjects +
+                       '}';
+    }
 }

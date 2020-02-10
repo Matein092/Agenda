@@ -1,25 +1,25 @@
 #Nombre;Apellido;Telefono;Email;Codigo;Semestre;Foto;Cumpleaños (Día/Mes/Año);Edad;Carrera;Dirección;NRC Cursos que estas viendo (Separar por comas)
-Jhon Edward;Mora Mora;3166360553;jhonedmora@gmail.com;A00355710;5;.\\img\\mora.jpeg;13/12/2000;19;Software Systems Engineering;;
-Manuel  ;Balanta Quintero;3218746583;mbalantaq@gmail.com;A00351728;5;.\\img\\balanta.jpg;7/03/2000;19;Software Engineering;Distrito de Aguablanca, Comuna 13;
-Juan Diego;Naranjo Tafur;3145608074;juannaranjo1206@gmail.com;A00351771;5;.\\img\\naranjo.gif;12/06/2000;19;Software Engineering;134 Kendall Court;
-Mateo;Ramírez Rodríguez;3174149631;mateoboom@hotmail.com;A00351422;5;;10/11/2000;19;Software Engineering;Carrera 85c bis # 14a - 07 casa 08;
-Sergio Alejandro;Cabrera Nieto;3214286125;sergiocabreranieto@gmail.com;A00354577;5;.\\img\\cabrera.jpg;11/10/1999;20;Software Engineering;Paseo Vizcaya 14-1D;
-Juan David;Lectamo;3134567865;l3c74m0@gmail.com;A00354573;5;.\\img\\lectamo.jpg;12/10/1999;19;Software Engineering;;123456,123456,123456
+Jhon Edward;Mora Mora;3166360553;jhonedmora@gmail.com;A00355710;5;.\\img\\mora.jpeg;13/12/2000;19;Software Systems Engineering;;10342,10321,11144,10818,10394,10446,10819,10445
+Manuel  ;Balanta Quintero;3218746583;mbalantaq@gmail.com;A00351728;5;.\\img\\balanta.jpg;7/03/2000;19;Software Engineering;Distrito de Aguablanca, Comuna 13;00000
+Juan Diego;Naranjo Tafur;3145608074;juannaranjo1206@gmail.com;A00351771;5;.\\img\\naranjo.gif;12/06/2000;19;Software Engineering;134 Kendall Court;00000
+Mateo;Ramírez Rodríguez;3174149631;mateoboom@hotmail.com;A00351422;5;;10/11/2000;19;Software Engineering;Carrera 85c bis # 14a - 07 casa 08;00000
+Sergio Alejandro;Cabrera Nieto;3214286125;sergiocabreranieto@gmail.com;A00354577;5;.\\img\\cabrera.jpg;11/10/1999;20;Software Engineering;Paseo Vizcaya 14-1D;00000
+Juan David;Lectamo;3134567865;l3c74m0@gmail.com;A00354573;5;.\\img\\lectamo.jpg;12/10/1999;19;Software Engineering;;10342,10446,10445,11144,10394,10819,10818
 Jairo Emilio ;Rodriguez Viveros;3101234452;jairitox2000@gmail.com;A00354217;5;;29/03/2000;19;Software Engineering;calle 18 # 122-135;1244,2354,2413,23423
-Critian Camilo;Lasso Hernandez;3165301157;crisca_25@hotmail.com;A00355275;5;;25/06/2000;19;Software Engineering;Carrera 74 #15-52;
+Critian Camilo;Lasso Hernandez;3165301157;crisca_25@hotmail.com;A00355275;5;;25/06/2000;19;Software Engineering;Carrera 74 #15-52;00000
 Jose David;Jimenez Florez;3133133113;jdjimenez04@hotmail.com;A00355457;5;.\\img\\jimenez.jpg;5/10/2000;19;Software Engineering;Cra 1 # 1- 111;121212,212121,131313,313131
-Juan José;Calderón Holguín;3017552522;juancalderon721@outlook.com;A00345638;6;.\\img\\calderon.jpg;7/02/2001;18;Software Engineering;Calle 12#32-25;00000,11111,22222,33333,444444,5555
-Yimar David;Tamayo Hernandez;3164403798;yimar2001@gmail.com;A00355117;5;.\\img\\tamayo.jpg;22/04/2001;18;Software Engineering;Cra. 1 ###13-42, La Pérgola;
+Juan José;Calderón Holguín;3017552522;juancalderon721@outlook.com;A00345638;6;.\\img\\calderon.jpg;7/02/2001;18;Software Engineering;Calle 12#32-25;10406,11967,10321,10809,10806,10446,10445
+Yimar David;Tamayo Hernandez;3164403798;yimar2001@gmail.com;A00355117;5;.\\img\\tamayo.jpg;22/04/2001;18;Software Engineering;Cra. 1 ###13-42, La Pérgola;00000
 Alejandro;Martinez Martinez;3112345674;alejomam2011@gmail.com;A00354350;5;;27/03/2000;19;Software Engineering;Calle 5, topa tolondra;1234, 1234, 1234, 1234, 1234
-Cesar;Canales;3128854847;sleepata6@gmail.com;A00345026;5;;8/09/1999;20;Software Systems andTelematic Engineering;Calle 16#25A50;10453, 11144, 10394, 10446, 10445, 10451, 11603
-Daniel;Fernández;3122199411;alejo.dafr@gmail.com;A00354694;5;.\\img\\fernandez.jpg;3/04/2001;18;Software Engineering;Santander de Quilichao;
-Ana María ;Muñoz Valencia;3017980082;cnscanamariamv@gmail.com;A00352237;5;.\\img\\munioz.jpg;11/08/2000;19;Software Engineering;Cra 56 #13F-04;NO QUIERO
-Juan David;Hernández;3155462882;juanher0825@gmail.com;A00356210;5;;25/08/2000;19;Software Engineering;Casa Blanca EEUU;1234
+Cesar;Canales;3128854847;sleepata6@gmail.com;A00345026;5;;8/09/1999;20;Software Systems andTelematic Engineering;Calle 16#25A50;10453,11144,10394,10446,10445,10451,11603
+Daniel;Fernández;3122199411;alejo.dafr@gmail.com;A00354694;5;.\\img\\fernandez.jpg;3/04/2001;18;Software Engineering;Santander de Quilichao;00000
+Ana María ;Muñoz Valencia;3017980082;cnscanamariamv@gmail.com;A00352237;5;.\\img\\munioz.jpg;11/08/2000;19;Software Engineering;Cra 56 #13F-04;00000
+Juan David;Hernández;3155462882;juanher0825@gmail.com;A00356210;5;;25/08/2000;19;Software Engineering;Casa Blanca EEUU;00000
 Christian ;Flor Astudillo;3006780898;christian.flor43@gmail.com;A00355624;5;;7/05/2001;18;Software Systems andTelematic Engineering;Avenida el dorado, con calle 30;10824, 10453, 10821, 10261, 10391, 10394, 10446, 10445, 11603
-Juan José;Valencia Jaramillo;3136353922;juanchouni@hotmail.com;A00354904;5;.\\img\\valencia.jpg;13/03/2002;17;Software Engineering ;Transv. 30 #4e63;Neel Pasteeel
+Juan José;Valencia Jaramillo;3136353922;juanchouni@hotmail.com;A00354904;5;.\\img\\valencia.jpg;13/03/2002;17;Software Engineering ;Transv. 30 #4e63;00000
 Oscar Ivan ;Riascos Guevara;3152363380;osvan202@gmail.com;A00348435;5;.\\img\\riascos.png;17/02/2000;19;Software Engineering;Carrera 65 # 2-07;10531, 14644, 10744, 10876, 10745, 10531, 14256
-Luis Felipe;Sanchez Vega;3176737525;vegafelipe015@gmail.com;A00355727;5;.\\img\\sanchez.jpg;27/09/2000;19;Software Engineering;Diagonal 65 #33-09;
+Luis Felipe;Sanchez Vega;3176737525;vegafelipe015@gmail.com;A00355727;5;.\\img\\sanchez.jpg;27/09/2000;19;Software Engineering;Diagonal 65 #33-09;00000
 Elías;Estupiñan;3225921114;simply753@gmail.com;A00049152;6;.\\img\\estupinian.png;12/12/1996;23;Software Engineering;Cra 26P #26m2-23;11467,10799,10810,10394,10446,10807,10445,10445,11167,10716
-Natalia Isabel;Gonzalez Murillo;3217335600;natalia.gonzalez3@correo.icesi.edu.co;A00354849;5;;26/11/1999;20;Software Engineering;Carrera 76 # 2A - 110;1,2,3,4,5,6,7
+Natalia Isabel;Gonzalez Murillo;3217335600;natalia.gonzalez3@correo.icesi.edu.co;A00354849;5;;26/11/1999;20;Software Engineering;Carrera 76 # 2A - 110;00000
 Johann Andrei;Ocampo Torres;3156352435;johann0117@live.com;A00295744;5;.\\img\\ocampo.png;20/06/2000;19;Software Engineering;Calle siempre viva 1234;6532,8765,2567,6543,2345
 Juan David;Vera Usman;3184696446;juandaveru@gmail.com;A00293816;5;.\\img\\vera.jpg;16/08/1998;21;Software Engineering;cll 18a # 56;10824, 10453, 10821, 10261, 10391, 10394, 10446, 10445, 11603

@@ -1,31 +1,26 @@
 package controller;
 
-import javafx.fxml.Initializable;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import model.Contact;
-import model.Schedule;
-import sun.font.TextLabel;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import exceptions.ExistStudentException;
 import exceptions.NoExistContactException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import model.Contact;
+import model.Schedule;
+import model.Subject;
+
+import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+import java.util.ResourceBundle;
 
 /*
  * 
@@ -81,7 +76,7 @@ public class ScheduleController implements Initializable {
 	@FXML
 	private TextField tfTime;
 	@FXML
-	private ListView<?> lvCourses;
+	private ListView<String> lvCourses;
 	@FXML
 	private Button btNewCourse;
 	@FXML
@@ -97,7 +92,7 @@ public class ScheduleController implements Initializable {
 	@FXML
 	private Label lbLessEnrolledCourse;
 	@FXML
-	private ListView<?> lvAllCourses;
+	private ListView<String> lvAllCourses;
 	@FXML
 	private TextField tfNRCSummary;
 	@FXML
@@ -126,6 +121,11 @@ public class ScheduleController implements Initializable {
 	private TextField tfAge;
 	@FXML
 	private TextField tfCreditsnumber;
+	@FXML
+	private TextField tfNameCourse;
+	@FXML
+	private TextField tfNameCourseSummary;
+
 
 	/*
 	 * Indica la posición de un estudiante en la hastTable.
@@ -138,6 +138,7 @@ public class ScheduleController implements Initializable {
 	 * Es la clase princiapl del modelo
 	 */
 	private Schedule schedule;
+	private String currentId;
 
 	// Inicializador
 
@@ -147,11 +148,12 @@ public class ScheduleController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		schedule = new Schedule();
-		pos = 0;
-		cbCriterio.getItems().addAll("NOMBRE", "APELLIDO", "FECHA NACIMIENTO", "CÓDIGO");
 		try {
-			schedule.chargeData(); // Carga los datos de los estudiantes
+			schedule = new Schedule();
+			pos = 0;
+			currentId = null;
+			cbCriterio.getItems().addAll("Seleccione un criterio de búsqueda","NOMBRE", "APELLIDO", "FECHA NACIMIENTO", "CÓDIGO");
+			cbCriterio.getSelectionModel().selectFirst();
 			printContacts(); // Muestra los datos de los estudiantes en la interfaz de usuario.
 		} catch (IOException e) {
 			Alert men = new Alert(Alert.AlertType.ERROR);
@@ -160,6 +162,9 @@ public class ScheduleController implements Initializable {
 			men.setContentText("El archivo que contiene los datos de los estudiantes no se ha encontrado.");
 			men.showAndWait();
 		}
+
+
+
 	}
 
 	// Métodos
@@ -179,11 +184,15 @@ public class ScheduleController implements Initializable {
 	 */
 	public Contact searchPosContact(int pos) {
 		Contact contact = null;
-		if (pos >= 0 && pos < schedule.getContacts().size()) {
-			contact = schedule.getContacts().get(pos);
+		List<Contact>  contactList = new ArrayList<Contact>(schedule.getContacts().values());
+
+			if (pos >= 0 && pos < contactList.size()) {
+				contact = contactList.get(pos);
+				currentId = contact.getId();
 		}
 		return contact;
 	}
+
 
 	/**
 	 * Muesta los datos de un estudiante.
@@ -230,6 +239,8 @@ public class ScheduleController implements Initializable {
 			tfAge.setText("");
 			tfAge.setText(contact.getAge() + "");
 
+			//showSubjectsList(contact);
+
 		} catch (NoExistContactException e) {
 			Alert men = new Alert(Alert.AlertType.ERROR);
 			men.setTitle("Error");
@@ -239,11 +250,23 @@ public class ScheduleController implements Initializable {
 		}
 	}
 
+
+
+	public void printSubject() {}
+
+	public void showSubjectsList(Contact contact){
+		ObservableList<String> subjectList = FXCollections.observableArrayList();
+		for (int i = 0; i <subjectList.size() ; i++) {
+			lvCourses.getItems().add(subjectList.get(i));
+		}
+	}
+
+
 	/**
 	 * Muestra el estudiante anterior.
 	 */
 	@FXML
-	public void passBackContact() {
+	public void passBackContact(ActionEvent event) {
 		if (pos > 0) {
 			pos -= 1;
 			printContacts();
@@ -256,11 +279,11 @@ public class ScheduleController implements Initializable {
 	 * Muestra el siguiente estudiante.
 	 */
 	@FXML
-	public void passNextContact() {
-		if (pos < schedule.getSize() - 1) {
+	public void passNextContact(ActionEvent event) {
+		if (pos < schedule.getContacts().size() - 1) {
 			pos += 1;
 			printContacts();
-		} else if (pos == schedule.getSize() - 1) {
+		} else if (pos == schedule.getContacts().size() - 1) {
 			printContacts();
 		}
 	}
@@ -269,7 +292,7 @@ public class ScheduleController implements Initializable {
 	 * Limpia los campos para ingresar un nuevo estudiante.
 	 */
 	@FXML
-	public void newContactClick() {
+	public void newContactClick(ActionEvent event) {
 		ivPhoto.setImage(new Image(".\\img\\Contact.jpg"));
 		tfName.setText("");
 		tfLastName.setText("");
@@ -295,7 +318,7 @@ public class ScheduleController implements Initializable {
 	 * Guarda un nuevo estudiante.
 	 */
 	@FXML
-	public void saveContactClick() {
+	public void saveContactClick(ActionEvent event) {
 		try {
 			schedule.addContact(tfName.getText(), tfLastName.getText(), tfTelephone.getText(), tfEmail.getText(),
 					tfCode.getText(), Integer.parseInt(tfSemester.getText()), "", dpBornDate.getValue() + "",
@@ -313,15 +336,94 @@ public class ScheduleController implements Initializable {
 	 * Elimina un estudiante
 	 */
 	@FXML
-	public void deleteContactClick() {
+	public void deleteContactClick(ActionEvent event) {
+
 		schedule.deleteContact(tfCode.getText());
+
+		ivPhoto.setImage(new Image(".\\img\\Contact.jpg"));
+		tfName.setText("");
+		tfLastName.setText("");
+		tfCode.setText("");
+		dpBornDate.setValue(null);
+		dpBornDate.setPromptText("");
+		dpBornDate.setEditable(true);
+		tfTelephone.setText("");
+		tfEmail.setText("");
+		tfCareer.setText("");
+		tfSemester.setText("");
+		tfAge.setText("");
+
+		pos+=1;
+		printContacts();
+
 	}
 
 	/**
 	 * Actualiza los datos de un estudiante actual.
 	 */
 	@FXML
-	public void updateContactClick() {
+	public void updateContactClick(ActionEvent event) {
+		try {
+
+			schedule.modifyContact(currentId,
+					tfName.getText(),
+					tfLastName.getText(),
+					tfTelephone.getText(),
+					tfEmail.getText(),
+					tfCode.getText(),
+					Integer.parseInt(tfSemester.getText()),
+					"",
+					dpBornDate.getValue() + "",
+					Integer.parseInt(tfAge.getText()),
+					tfCareer.getText());
+		} catch (NullPointerException e) {
+			Alert men = new Alert(Alert.AlertType.WARNING);
+			men.setTitle("Avertencia");
+			men.setHeaderText("Estudiante no existe");
+			men.setContentText("El estudiante a modificar no existe.");
+			men.showAndWait();
+		}
 	}
+
+
+	@FXML
+	public void searchForCriterio(){
+		try {
+			if (cbCriterio.getValue().equals("NOMBRE")) {
+				if (tfSearch.getText() != null || !tfSearch.equals("")) {
+					printContact(schedule.searchByName(tfSearch.getText()));
+					cbCriterio.getSelectionModel().selectFirst();
+					tfSearch.setText("");
+				}
+
+			} else if (cbCriterio.getValue().equals("APELLIDO")) {
+				if (tfSearch.getText() != null || !tfSearch.equals("")) {
+					printContact(schedule.searchByLastName(tfSearch.getText()));
+					cbCriterio.getSelectionModel().selectFirst();
+					tfSearch.setText("");
+				}
+			} else if (cbCriterio.getValue().equals("FECHA NACIMIENTO")) {
+				if (tfSearch.getText() != null || !tfSearch.equals("")) {
+					printContact(schedule.searchByBornDate(tfSearch.getText()));
+					cbCriterio.getSelectionModel().selectFirst();
+					tfSearch.setText("");
+				}
+			} else if (cbCriterio.getValue().equals("CÓDIGO")) {
+				if (tfSearch.getText() != null || !tfSearch.equals("")) {
+					printContact(schedule.searchById(tfSearch.getText()));
+					cbCriterio.getSelectionModel().selectFirst();
+					tfSearch.setText("");
+				}
+			}
+		}catch (NullPointerException e){
+			Alert men = new Alert(Alert.AlertType.ERROR);
+			men.setTitle("Error");
+			men.setHeaderText("Estudiante no encontrado");
+			men.setContentText("El estudiante buscado no existe.");
+			men.showAndWait();
+		}
+	}
+
+
 
 }

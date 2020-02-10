@@ -1,25 +1,26 @@
 package model;
 
-import java.io.*;
-import java.util.*;
-
 import exceptions.ExistStudentException;
 import exceptions.NoExistContactException;
-import exceptions.NotLoadStudentsException;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Schedule {
 
 	// Association
 	
 	public final static String STUDENTS_PATH = ".\\data\\Students.csv";
-	public final static String COURSES_PATH = ".\\data\\Courses.csv";
 
-	private HashMap<Integer, Contact> contacts;
-	private int size;
+	private Map<String, Contact> contacts;
 
 	// Constructor
-	public Schedule() {
-		contacts = new HashMap<Integer, Contact>();
+	public Schedule() throws IOException {
+		contacts = new HashMap<String, Contact>();
+		chargeData();
 	}
 
 	// Métodos
@@ -32,21 +33,31 @@ public class Schedule {
 
 		BufferedReader bF = new BufferedReader(new FileReader(STUDENTS_PATH));
 		String line = "";
-		Contact contact;
+		Contact contact = null;
 		while ((line = bF.readLine()) != null) {
 			if (line.charAt(0) != '#') {
 				String[] data = line.split(";");
 				contact = new Contact(data[0], data[1], data[2], data[3], data[4], Integer.parseInt(data[5]), data[6],
 						data[7], Integer.parseInt(data[8]), data[9]);
-				size++;
-				int index = size - 1;
-				contacts.put(index, contact);
+				loadNRCs(data[11],contact);
+				contact.loadSubjects();
+				contacts.put(contact.getId(), contact);
 			}
 		}
 		bF.close();
 	}
 
-	
+	private void loadNRCs(String data, Contact contact){
+		String[] nrcs = data.split(",");
+		for (int i = 0; i < contact.getNrcs().size(); i++) {
+			contact.getNrcs().add(nrcs[i]);
+		}
+
+	}
+
+
+
+
 	/**
 	 * Busca un estudiante por su código
 	 * @param id - El código del estudiante.
@@ -56,8 +67,11 @@ public class Schedule {
 	 */
 	public Contact searchById(String id){
 		Contact objContact = null;
-		if (contacts.get(id) != null && contacts.get(id).getId() == id) {
-			objContact = contacts.get(id);
+		for (Contact cont: contacts.values()) {
+			if (cont.getId().equals(id)) {
+				objContact = cont;
+			}
+
 		}
 		return objContact;
 	}
@@ -66,18 +80,13 @@ public class Schedule {
 	 * Busca un estudiante a partir de la fecha de nacimiento.
 	 * @param bornDate - La fecha de nacimiento.
 	 * @return - El estudiante.
-	 * @throws NoExistContactException - Si el estudiante no existe.
 	 */
-	public Contact searchByBornDate(String bornDate) throws NoExistContactException {
+	public Contact searchByBornDate(String bornDate) {
 		Contact objContact = null;
-		if (contacts.get(bornDate).getBornDate() == bornDate) {
-			objContact = new Contact(contacts.get(bornDate).getName(), contacts.get(bornDate).getLastName(),
-					contacts.get(bornDate).getTelephone(), contacts.get(bornDate).getEmail(),
-					contacts.get(bornDate).getId(), contacts.get(bornDate).getSemester(),
-					contacts.get(bornDate).getAvatar(), contacts.get(bornDate).getBornDate(),
-					contacts.get(bornDate).getAge(), contacts.get(bornDate).getProgram());
-		} else {
-			throw new NoExistContactException();
+		for (Contact cont : contacts.values()) {
+			if (cont.getBornDate().equals(bornDate)) {
+				objContact = cont;
+			}
 		}
 		return objContact;
 	}
@@ -86,17 +95,13 @@ public class Schedule {
 	 * Busca un estudiante a partir del nombre.
 	 * @param name - El nombre.
 	 * @return - El estudiante.
-	 * @throws NoExistContactException - Si el estudiante no existe.
 	 */
-	public Contact searchByName(String name) throws NoExistContactException {
+	public Contact searchByName(String name) {
 		Contact objContact = null;
-		if (contacts.get(name).getEmail() == name) {
-			objContact = new Contact(contacts.get(name).getName(), contacts.get(name).getLastName(),
-					contacts.get(name).getTelephone(), contacts.get(name).getEmail(), contacts.get(name).getId(),
-					contacts.get(name).getSemester(), contacts.get(name).getAvatar(), contacts.get(name).getBornDate(),
-					contacts.get(name).getAge(), contacts.get(name).getProgram());
-		} else {
-			throw new NoExistContactException();
+		for (Contact cont : contacts.values()) {
+			if (cont.getName().equals(name)) {
+				objContact = cont;
+			}
 		}
 		return objContact;
 	}
@@ -105,18 +110,13 @@ public class Schedule {
 	 * Busca un estudiante a partir del apellido.
 	 * @param lastName - El apellido.
 	 * @return - El estudiante.
-	 * @throws NoExistContactException - Si el estudiante no existe.
 	 */
-	public Contact searchByLastName(String lastName) throws NoExistContactException {
+	public Contact searchByLastName(String lastName) {
 		Contact objContact = null;
-		if (contacts.get(lastName).getEmail() == lastName) {
-			objContact = new Contact(contacts.get(lastName).getName(), contacts.get(lastName).getLastName(),
-					contacts.get(lastName).getTelephone(), contacts.get(lastName).getEmail(),
-					contacts.get(lastName).getId(), contacts.get(lastName).getSemester(),
-					contacts.get(lastName).getAvatar(), contacts.get(lastName).getBornDate(),
-					contacts.get(lastName).getAge(), contacts.get(lastName).getProgram());
-		} else {
-			throw new NoExistContactException();
+		for (Contact cont : contacts.values()) {
+			if (cont.getLastName().equals(lastName)) {
+				objContact = cont;
+			}
 		}
 		return objContact;
 	}
@@ -134,9 +134,10 @@ public class Schedule {
 	 * @param age - La nueva edad.
 	 * @param program - El nuevo programa.
 	 */
-	public void modifyContact(String name, String lastName, String telephone, String email, String id, int semester,
-			String avatar, String bornDate, int age, String program) {
-		Contact objC = searchById(id);
+	public void modifyContact(String currentId, String name, String lastName, String telephone, String email, String id, int semester,
+			String avatar, String bornDate, int age, String program) throws NullPointerException {
+		Contact objC = searchById(currentId);
+		deleteContact(currentId);
 		if (objC != null) {
 			deleteContact(id);
 			objC.setName(name);
@@ -150,7 +151,7 @@ public class Schedule {
 			objC.setBornDate(bornDate);
 			objC.setProgram(program);
 		}
-		contacts.put(contacts.size() - 1, objC);
+		contacts.put(objC.getId(), objC);
 	}
 
 	/**
@@ -162,7 +163,6 @@ public class Schedule {
 		if (contact != null) {
 			contacts.remove(id);
 		}
-		size--;
 	}
 
 	/**
@@ -184,10 +184,7 @@ public class Schedule {
 		Contact contact = searchById(id);
 		if (contact == null) {
 			contact = new Contact(name, lastName, telephone, email, id, semester, avatar, bornDate, age, program);
-			size++;
-			int index = size - 1;
-			contacts.put(index, contact);
-			System.out.println("Guardado");
+			contacts.put(contact.getId(), contact);
 		}else if(contact != null) {
 			throw new ExistStudentException();
 		}
@@ -238,16 +235,9 @@ public class Schedule {
 	}
 
 	/**
-	 * Devuelve el tamanio de la colección de estudiantes.
-	 */
-	public int getSize() {
-		return size;
-	}
-
-	/**
 	 * Devuelve la colección de estudiantes.
 	 */
-	public HashMap<Integer, Contact> getContacts() {
+	public Map<String, Contact> getContacts() {
 		return contacts;
 	}
 
