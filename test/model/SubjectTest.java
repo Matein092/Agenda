@@ -367,6 +367,7 @@ class SubjectTest {
 	 */
 	@Test
 	public void checkGetDepartament() {
+		//Test 1
 		setupEscenary1();
 		assertEquals("Departamento TIC", subject.getDepartment());
 		
