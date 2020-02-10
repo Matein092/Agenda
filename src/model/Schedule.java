@@ -14,12 +14,12 @@ public class Schedule {
 	public final static String STUDENTS_PATH = ".\\data\\Students.csv";
 	public final static String COURSES_PATH = ".\\data\\Courses.csv";
 
-	private HashMap<Integer, Contact> contacts;
+	private Map<String, Contact> contacts;
 	private int size;
 
 	// Constructor
 	public Schedule() {
-		contacts = new HashMap<Integer, Contact>();
+		contacts = new HashMap<String, Contact>();
 	}
 
 	// Métodos
@@ -247,7 +247,7 @@ public class Schedule {
 	/**
 	 * Devuelve la colección de estudiantes.
 	 */
-	public HashMap<Integer, Contact> getContacts() {
+	public Map<String, Contact> getContacts() {
 		return contacts;
 	}
 
