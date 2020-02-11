@@ -16,9 +16,9 @@ ___
 ___
 #How to use
 ___
-![Main screen](https://drive.google.com/open?id=1eN_kBu5kH9JaRoSoUUHxx6lUjb6mkt2d)
+![Main screen](https://drive.google.com/file/d/1eN_kBu5kH9JaRoSoUUHxx6lUjb6mkt2d/view?usp=sharing)
 ___
-![Summary screen](https://drive.google.com/open?id=1eYcd9M46FiTppeoyitT5f5ZJH5eK9J7e)
+![Summary screen](https://drive.google.com/file/d/1eYcd9M46FiTppeoyitT5f5ZJH5eK9J7e/view?usp=sharing)
 
 
 
