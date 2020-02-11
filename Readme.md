@@ -11,11 +11,11 @@ ___
 Clone or download the repository and open your favortie IDE for java and:
 ___
 -Click in the folder src
-___
+
   -Click in the folder gui
-  ___
+ 
     -Run the ScheduleMain.java class as a Java project
-    ___
+   
 
 
 
