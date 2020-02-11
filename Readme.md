@@ -7,7 +7,9 @@
 ___
 
 **How to execute**
-Clone or download the repository and open your favortie IDE for java and
+___
+Clone or download the repository and open your favortie IDE for java and:
+___
 -Click in the folder src
   -Click in the folder gui
     -Run the ScheduleMain.java class as a Java project
