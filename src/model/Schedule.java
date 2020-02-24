@@ -5,6 +5,7 @@ import exceptions.NoExistContactException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +15,8 @@ public class Schedule {
 	// Association
 	
 	public final static String STUDENTS_PATH = ".\\data\\Students.csv";
+
+
 
 	private Map<String, Contact> contacts;
 
@@ -56,6 +59,10 @@ public class Schedule {
 	}
 
 
+	public void saveData() throws IOException {
+		FileWriter writer = new FileWriter(STUDENTS_PATH);
+
+	}
 
 
 	/**

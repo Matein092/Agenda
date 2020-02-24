@@ -3,6 +3,10 @@
 	<output-test url="file://$MODULE_DIR$/out/test/Agenda"/>
 	<exclude-output/>
 	<contentEntry url="file://$MODULE_DIR$">
+		<testFolder url="file://$MODULE_DIR$/test"/>
 		<excludeFolder url="file://$MODULE_DIR$/DemoSerializacion"/>
 	</contentEntry>
+	<lib name="JUnit5.4" scope="TEST"/>
+	<lib name="JUnit5.4" scope="TEST"/>
+	<lib name="JUnit5.4" scope="TEST"/>
 </component>
