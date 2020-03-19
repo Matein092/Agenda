@@ -1,131 +1,164 @@
 package controller;
 
-import javafx.fxml.Initializable;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import model.Contact;
-import model.Schedule;
-import sun.font.TextLabel;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import exceptions.ExistStudentException;
 import exceptions.NoExistContactException;
+import exceptions.NotExistSubjectException;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import model.Contact;
+import model.Schedule;
+import model.Subject;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 /*
  * 
  */
 public class ScheduleController implements Initializable {
 
-	@FXML
-	private TextField tfContactPath;
-	@FXML
-	private Button btloadContact;
-	@FXML
-	private Label lbMenLoad;
-	@FXML
-	private ImageView ivPhoto;
-	@FXML
-	private TextField tfName;
-	@FXML
-	private TextField tfCode;
-	@FXML
-	private TextField tfTelephone;
-	@FXML
-	private TextField tfEmail;
-	@FXML
-	private TextField tfCareer;
-	@FXML
-	private TextField tfSemester;
-	@FXML
-	private DatePicker dpBornDate;
-	@FXML
-	private Button btNewContact;
-	@FXML
-	private Button btSaveContact;
-	@FXML
-	private Button btDeleteContact;
-	@FXML
-	private Button btUpdateContact;
-	@FXML
-	private TextField tfSearch;
-	@FXML
-	private ComboBox<String> cbCriterio;
-	@FXML
-	private TextField tfNRC;
-	@FXML
-	private TextField tfCreditHours;
-	@FXML
-	private TextField tfInstructor;
-	@FXML
-	private TextField tfCampus;
-	@FXML
-	private TextField tfBuilding;
-	@FXML
-	private TextField tfRoom;
-	@FXML
-	private TextField tfTime;
-	@FXML
-	private ListView<?> lvCourses;
-	@FXML
-	private Button btNewCourse;
-	@FXML
-	private Button btSaveCourse;
-	@FXML
-	private Button btDeleteCourse;
-	@FXML
-	private Button btUpdateCourse;
-	@FXML
-	private Label lbCoursesAverage;
-	@FXML
-	private Label lbMostEnrolledCourse;
-	@FXML
-	private Label lbLessEnrolledCourse;
-	@FXML
-	private ListView<?> lvAllCourses;
-	@FXML
-	private TextField tfNRCSummary;
-	@FXML
-	private TextField tfCreditHoursSummary;
-	@FXML
-	private TextField tfLevelSummary;
-	@FXML
-	private TextField tfInstructorSummary;
-	@FXML
-	private TextField tfCampusSummary;
-	@FXML
-	private TextField tfBuildingSummary;
-	@FXML
-	private TextField tfRoomSummary;
-	@FXML
-	private TextField tfTimeSummary;
-	@FXML
-	private Label lbStudentsPerCourse;
-	@FXML
-	private Label lbCreditHoursAverage;
-	@FXML
-	private Button btExplorer;
-	@FXML
-	private TextField tfLastName;
-	@FXML
-	private TextField tfAge;
-	@FXML
-	private TextField tfCreditsnumber;
+    @FXML
+    private ImageView ivPhoto;
+
+    @FXML
+    private TextField tfName;
+
+    @FXML
+    private TextField tfLastName;
+
+    @FXML
+    private TextField tfCode;
+
+    @FXML
+    private TextField tfTelephone;
+
+    @FXML
+    private TextField tfEmail;
+
+    @FXML
+    private TextField tfCareer;
+
+    @FXML
+    private TextField tfSemester;
+
+    @FXML
+    private DatePicker dpBornDate;
+
+    @FXML
+    private TextField tfAge;
+
+    @FXML
+    private Button btNewContact;
+
+    @FXML
+    private Button btSaveContact;
+
+    @FXML
+    private Button btDeleteContact;
+
+    @FXML
+    private Button btUpdateContact;
+
+    @FXML
+    private TextField tfSearch;
+
+    @FXML
+    private ComboBox<String> cbCriterio;
+
+    @FXML
+    private TextField tfNRC;
+
+    @FXML
+    private TextField tfNameSubject;
+
+    @FXML
+    private TextField tfCredits;
+
+    @FXML
+    private TextField tfTeacher;
+
+    @FXML
+    private TextField tfEnrolledStudent;
+
+    @FXML
+    private TextField tfTeacherEmail;
+
+    @FXML
+    private TextField tfMonitor;
+
+    @FXML
+    private TextField tfMonitorEmail;
+
+    @FXML
+    private TextField tfDepartament;
+
+    @FXML
+    private TextField tfGroup;
+
+    @FXML
+    private ListView<String> lvCourses;
+
+    @FXML
+    private Button btNewCourse;
+
+    @FXML
+    private Button btSaveCourse;
+
+    @FXML
+    private Button btDeleteCourse;
+
+    @FXML
+    private Button btUpdateCourse;
+
+    @FXML
+    private Label lbCoursesAverage;
+
+    @FXML
+    private Label lbMostEnrolledCourse;
+
+    @FXML
+    private Label lbLessEnrolledCourse;
+
+    @FXML
+    private ListView<String> lvAllCourses;
+
+    @FXML
+    private TextField tfNRCSummary;
+
+    @FXML
+    private TextField tfCreditHoursSummary;
+
+    @FXML
+    private TextField tfLevelSummary;
+
+    @FXML
+    private TextField tfInstructorSummary;
+
+    @FXML
+    private TextField tfCampusSummary;
+
+    @FXML
+    private TextField tfBuildingSummary;
+
+    @FXML
+    private TextField tfRoomSummary;
+
+    @FXML
+    private TextField tfTimeSummary;
+
+    @FXML
+    private Label lbStudentsPerCourse;
+
+    @FXML
+    private Label lbCreditHoursAverage;
 
 	/*
 	 * Indica la posición de un estudiante en la hastTable.
@@ -138,6 +171,7 @@ public class ScheduleController implements Initializable {
 	 * Es la clase princiapl del modelo
 	 */
 	private Schedule schedule;
+	private String currentId;
 
 	// Inicializador
 
@@ -146,20 +180,25 @@ public class ScheduleController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
-		schedule = new Schedule();
-		pos = 0;
-		cbCriterio.getItems().addAll("NOMBRE", "APELLIDO", "FECHA NACIMIENTO", "CÓDIGO");
+			
 		try {
-			schedule.chargeData(); // Carga los datos de los estudiantes
-			printContacts(); // Muestra los datos de los estudiantes en la interfaz de usuario.
-		} catch (IOException e) {
+			schedule = new Schedule();
+		} catch (NumberFormatException | IOException e) {
+			e.printStackTrace();
 			Alert men = new Alert(Alert.AlertType.ERROR);
 			men.setTitle("Error");
 			men.setHeaderText("Datos de estudiantes no encontrado");
 			men.setContentText("El archivo que contiene los datos de los estudiantes no se ha encontrado.");
 			men.showAndWait();
 		}
+		
+
+		pos = 0;
+		currentId = null;
+		cbCriterio.getItems().addAll("NOMBRE", "APELLIDO", "FECHA NACIMIENTO", "CÓDIGO");
+		printContacts(); // Muestra los datos de los estudiantes en la interfaz de usuario.
+		
+
 	}
 
 	// Métodos
@@ -169,6 +208,8 @@ public class ScheduleController implements Initializable {
 	 */
 	public void printContacts() {
 		printContact(searchPosContact(pos));
+		printListViewSubject();
+
 	}
 
 	/**
@@ -179,8 +220,11 @@ public class ScheduleController implements Initializable {
 	 */
 	public Contact searchPosContact(int pos) {
 		Contact contact = null;
-		if (pos >= 0 && pos < schedule.getContacts().size()) {
-			contact = schedule.getContacts().get(pos);
+		List<Contact>  contactList = new ArrayList<Contact>(schedule.getContacts().values());
+
+			if (pos >= 0 && pos < contactList.size()) {
+				contact = contactList.get(pos);
+				currentId = contact.getId();
 		}
 		return contact;
 	}
@@ -190,7 +234,7 @@ public class ScheduleController implements Initializable {
 	 * 
 	 * @param contact - El a mostrar.
 	 */
-	public void printContact(Contact contact) {
+	private void printContact(Contact contact) {
 
 		try {
 			tfName.setText("");
@@ -237,13 +281,142 @@ public class ScheduleController implements Initializable {
 			men.setContentText("El estudiante buscado no existe.");
 			men.showAndWait();
 		}
+		
 	}
+	
+	
+	
+	
+	//------------------------000-------------------
+	/**
+	 * Las materias de un contacto en especifico.
+	 * @param contact contacto para buscar la materia
+	 */
+	private void printListViewSubject() {
+		lvCourses.getItems().clear();
+		
+		List<Subject> founds = null;
+		try {
+			founds = schedule.searchSubjectByContact(tfCode.getText());
+		} catch (NotExistSubjectException e) {
+			Alert men = new Alert(Alert.AlertType.ERROR);
+			men.setTitle("Error");
+			men.setHeaderText("Estudiante no encontrado");
+			men.setContentText("El estudiante buscado no existe.");
+			men.showAndWait();
 
+		}
+		
+		if(founds != null) {
+			for(int i = 0; i < founds.size(); i++) {
+				lvCourses.getItems().add(founds.get(i).toString());
+			}
+		}
+	}
+	
+	
+	//---------------------------000---------------
+		
+	 @FXML
+	    void ListViewCourse(MouseEvent event) {
+		
+		
+		 String seletion = lvCourses.getSelectionModel().getSelectedItem();
+
+		 if(seletion != null) {
+			 String[] data = seletion.split(",");
+			 String nrc = data[0];
+			 // Busca la materia del contacto.
+			 Subject subject = schedule.getContact().searchSubject(nrc);		 
+			 
+			 if(subject != null) {
+				 
+				 tfNRC.setText(subject.getNrc());
+				 tfNameSubject.setText(subject.getName());
+				 tfCredits.setText(String.valueOf(subject.getCredits()));
+				 tfTeacher.setText(subject.getTeacherName());
+				 tfEnrolledStudent.setText(String.valueOf(subject.getEnrolledStudent()));
+				 tfTeacherEmail.setText(subject.getTeacherEmail());	
+				 tfMonitor.setText(subject.getMonitorName());
+				 tfMonitorEmail.setText(subject.getMonitorEmail());
+				 tfDepartament.setText(subject.getDepartment());
+				 tfGroup.setText(String.valueOf(subject.getGroup()));
+				 	
+				 
+			 }
+		 }
+		 
+	    }
+
+	 
+
+	    @FXML
+	    void btDeleteCourse(ActionEvent event) {
+	    	
+	    	String nrcSubject = tfNRC.getText();
+	    	String elementToClear =lvCourses.getSelectionModel().getSelectedItem();
+	    	lvCourses.getItems().remove(elementToClear);
+	    	
+	    	schedule.getContact().deleteSubject(nrcSubject);
+	    	clearCourse();
+	    }
+	    
+	    private void clearCourse() {
+	    	tfNRC.clear();
+	    	tfNameSubject.clear();
+	    	tfCredits.clear();
+	    	tfTeacher.clear();
+	    	tfEnrolledStudent.clear();
+	    	tfTeacherEmail.clear();
+	    	tfMonitor.clear();
+	    	tfMonitorEmail.clear();
+	    	tfDepartament.clear();
+	    	tfGroup.clear();
+	    }
+
+	    @FXML
+	    void btNewCourse(ActionEvent event) {
+	    	clearCourse();
+	    }
+
+	    @FXML
+	    void btSaveCourse(ActionEvent event) {
+	    	
+	    	String nrc = tfNRC.getText();
+	    	String name = tfNameSubject.getText();
+	    	int credits =Integer.parseInt(tfCredits.getText());
+	    	String teacherName = tfTeacher.getText();
+	    	int enrolledStudent = Integer.parseInt(tfEnrolledStudent.getText());
+	    	String teacherEmail = tfTeacherEmail.getText();
+	    	String monitorName = tfMonitor.getText();
+	    	String monitorEmail = tfMonitorEmail.getText();
+	    	String department = tfDepartament.getText();
+	    	int group = Integer.parseInt(tfGroup.getText());
+	    	schedule.getContact().addSubject(nrc, name, credits, teacherName, enrolledStudent, teacherEmail, monitorName, monitorEmail, department, group);
+	    	clearCourse();
+	    }
+
+	    @FXML
+	    void btUpdateCourse(ActionEvent event) {
+
+	    }
+	 
+	 
+	 
+	 
+	 
+	 
+	 /////////////////////////////////////////////////////////////////////////////
+	 ///////////////////////////////Contacto//////////////////////////////////////
+	 /////////////////////////////////////////////////////////////////////////////
+
+	 
+	 
 	/**
 	 * Muestra el estudiante anterior.
 	 */
 	@FXML
-	public void passBackContact() {
+	public void passBackContact(ActionEvent event) {
 		if (pos > 0) {
 			pos -= 1;
 			printContacts();
@@ -256,11 +429,11 @@ public class ScheduleController implements Initializable {
 	 * Muestra el siguiente estudiante.
 	 */
 	@FXML
-	public void passNextContact() {
-		if (pos < schedule.getSize() - 1) {
+	public void passNextContact(ActionEvent event) {
+		if (pos < schedule.getContacts().size() - 1) {
 			pos += 1;
 			printContacts();
-		} else if (pos == schedule.getSize() - 1) {
+		} else if (pos == schedule.getContacts().size() - 1) {
 			printContacts();
 		}
 	}
@@ -269,7 +442,7 @@ public class ScheduleController implements Initializable {
 	 * Limpia los campos para ingresar un nuevo estudiante.
 	 */
 	@FXML
-	public void newContactClick() {
+	public void newContactClick(ActionEvent event) {
 		ivPhoto.setImage(new Image(".\\img\\Contact.jpg"));
 		tfName.setText("");
 		tfLastName.setText("");
@@ -283,19 +456,12 @@ public class ScheduleController implements Initializable {
 		tfAge.setText("");
 	}
 
-	/**
-	 * Carga la imagen de un estidiante.
-	 */
-	@FXML
-	public void loadImageContact() {
-
-	}
 
 	/**
 	 * Guarda un nuevo estudiante.
 	 */
 	@FXML
-	public void saveContactClick() {
+	public void saveContactClick(ActionEvent event) {
 		try {
 			schedule.addContact(tfName.getText(), tfLastName.getText(), tfTelephone.getText(), tfEmail.getText(),
 					tfCode.getText(), Integer.parseInt(tfSemester.getText()), "", dpBornDate.getValue() + "",
@@ -313,15 +479,59 @@ public class ScheduleController implements Initializable {
 	 * Elimina un estudiante
 	 */
 	@FXML
-	public void deleteContactClick() {
+	public void deleteContactClick(ActionEvent event) {
+
 		schedule.deleteContact(tfCode.getText());
+
+		ivPhoto.setImage(new Image(".\\img\\Contact.jpg"));
+		tfName.setText("");
+		tfLastName.setText("");
+		tfCode.setText("");
+		dpBornDate.setValue(null);
+		dpBornDate.setPromptText("");
+		dpBornDate.setEditable(true);
+		tfTelephone.setText("");
+		tfEmail.setText("");
+		tfCareer.setText("");
+		tfSemester.setText("");
+		tfAge.setText("");
+
+		pos+=1;
+		printContacts();
+
 	}
 
 	/**
 	 * Actualiza los datos de un estudiante actual.
 	 */
 	@FXML
-	public void updateContactClick() {
+	public void updateContactClick(ActionEvent event) {
+		try {
+
+			schedule.modifyContact(currentId,
+					tfName.getText(),
+					tfLastName.getText(),
+					tfTelephone.getText(),
+					tfEmail.getText(),
+					tfCode.getText(),
+					Integer.parseInt(tfSemester.getText()),
+					"",
+					dpBornDate.getValue() + "",
+					Integer.parseInt(tfAge.getText()),
+					tfCareer.getText());
+		} catch (NullPointerException e) {
+			Alert men = new Alert(Alert.AlertType.WARNING);
+			men.setTitle("Avertencia");
+			men.setHeaderText("Estudiante no existe");
+			men.setContentText("El estudiante a modificar no existe.");
+			men.showAndWait();
+		}
 	}
+
+
+	@FXML
+	public void searchForCriterio(){}
+
+
 
 }

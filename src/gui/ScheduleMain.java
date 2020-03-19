@@ -17,7 +17,7 @@ public class ScheduleMain extends Application {
 			primaryStage.setResizable(true);
 			primaryStage.show();
 		} catch (Exception e) {
-
+			e.getMessage();
 		}
 	}
 

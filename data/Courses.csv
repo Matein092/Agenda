@@ -1,13 +1,13 @@
-Name;Credits;NRC;Teacher Name;Enrolled students number;Teacher mail;Monitor name;Monitor mail;Department;Group
-Ingeniería económica;4;11144;;;;;;;
-Proyecto integrador I;3;10446;;;;;;;
-Modelado de sistemas de infomación;2;10445;;;;;;;
-Electricidad-magnetismo y Laboratorio;4;10819;;;;;;;
-LAB - Electricidad-magentismo y Laboratorio;0;10818;;;;;;;
-Matemática Discreta;3;10394;;;;;;;
-Inferencia estadística;3;10342;;;;;;;
-Electiva en humanidades (cual???);3;;;;;;;;
-Cálculo de una variable :(;4;;;;;;;;
-Liderazgo;3;;;;;;;;
-Frances I;0;;;;;;;;
-Alemán II;0;10321;;;;;;;
+NRC;Name;Credits;Teacher Name;Enrolled students number;Teacher mail;Monitor name;Monitor email;Department;Group
+11144;Ingeniería económica;4;a;2222;a;a;a;a;1
+10446;Proyecto integrador I;3;a;2222;a;a;a;a;1
+10445;Modelado de sistemas de infomación;2;a;2222;a;a;a;a;1
+10819;Electricidad-magnetismo y Laboratorio;4;a;2222;a;a;a;a;1
+10818;LAB - Electricidad-magentismo y Laboratorio;0;a;2222;a;a;a;a;1
+10394;Matemática Discreta;3;a;2222;a;a;a;a;1
+10342;Inferencia estadística;3;a;2222;a;a;a;a;1
+13444;Electiva en humanidades (cual???);3;a;2222;a;a;a;a;1
+12331;Cálculo de una variable :(;4;a;2222;a;a;a;a;1
+12124;Liderazgo;3;a;2222;a;a;a;a;1
+12345;Frances I;0;a;2222;a;a;a;a;1
+10321;Alemán II;0;a;2222;a;a;a;a;1
