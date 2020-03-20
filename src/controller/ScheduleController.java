@@ -274,7 +274,10 @@ public class ScheduleController implements Initializable {
         try {
             founds = schedule.searchSubjectByContact(tfCode.getText());
             numberS.setText(Integer.toString(founds.size()));
-           
+            for(int i = 0; i < founds.size();i++) {
+				credits += founds.get(i).getCredits();
+			}
+			numberC.setText(Integer.toString(credits));
         } catch (NotExistSubjectException e) {
             Alert men = new Alert(Alert.AlertType.ERROR);
             men.setTitle("Error");
