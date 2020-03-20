@@ -269,12 +269,13 @@ public class ScheduleController implements Initializable {
     private void printListViewSubject() {
         lvCourses.getItems().clear();
         clearCourse();
+        String msg = "";
         int credits = 0;
         List<Subject> founds = null;
         try {
-            founds = schedule.searchSubjectByContact(tfCode.getText());
-            numberS.setText(Integer.toString(founds.size()));
-            for(int i = 0; i < founds.size();i++) {
+        	founds = schedule.searchSubjectByContact(tfCode.getText());
+			numberS.setText(Integer.toString(founds.size()));
+			for(int i = 0; i < founds.size();i++) {
 				credits += founds.get(i).getCredits();
 			}
 			numberC.setText(Integer.toString(credits));
