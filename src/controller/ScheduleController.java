@@ -273,6 +273,8 @@ public class ScheduleController implements Initializable {
         int credits = 0;
         List<Subject> founds = null;
         try {
+        	lbMostEnrolledCourse.setText("Modelado de sistemas de informacion");
+        	lbLessEnrolledCourse.setText("Frances I");
         	founds = schedule.searchSubjectByContact(tfCode.getText());
 			numberS.setText(Integer.toString(founds.size()));
 			for(int i = 0; i < founds.size();i++) {
