@@ -5,29 +5,29 @@ package model;
  */
 public class Join {
 
-	private String id;
-	private String nrc;
+    private String id;
+    private String nrc;
 
-	public Join(String id, String nrc) {
-		super();
-		this.id = id;
-		this.nrc = nrc;
-	}
+    public Join(String id, String nrc) {
+        super();
+        this.id = id;
+        this.nrc = nrc;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public String getNrc() {
-		return nrc;
-	}
+    public String getNrc() {
+        return nrc;
+    }
 
-	public void setNrc(String nrc) {
-		this.nrc = nrc;
-	}
+    public void setNrc(String nrc) {
+        this.nrc = nrc;
+    }
 
 }
