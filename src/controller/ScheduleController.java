@@ -124,6 +124,12 @@ public class ScheduleController implements Initializable {
 
     @FXML
     private Label lbCreditHoursAverage;
+    
+    @FXML
+	private Label numberS;
+	
+	@FXML
+	private Label numberC;
 
 
     /*
@@ -208,6 +214,8 @@ public class ScheduleController implements Initializable {
         try {
             tfName.setText("");
             if (!contact.getName().equals("")) {
+            	lbCoursesAverage.setText(contact.getName());
+				lbCreditHoursAverage.setText(contact.getName());
                 tfName.setText(contact.getName());
             }
 
@@ -261,10 +269,12 @@ public class ScheduleController implements Initializable {
     private void printListViewSubject() {
         lvCourses.getItems().clear();
         clearCourse();
-
+        int credits = 0;
         List<Subject> founds = null;
         try {
             founds = schedule.searchSubjectByContact(tfCode.getText());
+            numberS.setText(Integer.toString(founds.size()));
+           
         } catch (NotExistSubjectException e) {
             Alert men = new Alert(Alert.AlertType.ERROR);
             men.setTitle("Error");
