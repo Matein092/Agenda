@@ -3,9 +3,7 @@ package model;
 import exceptions.ExistStudentException;
 import exceptions.NoExistContactException;
 import exceptions.NotExistSubjectException;
-
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,6 +23,7 @@ public class Schedule {
 	private Map<String, Contact> contacts;
 	private ArrayList<Join> join;
 
+
 	// Constructor
 	public Schedule() throws NumberFormatException, IOException  {
 		contacts = new HashMap<String, Contact>();
@@ -34,11 +33,7 @@ public class Schedule {
 		chargeData();
 	
 	}
-	
-	
-	
-	
-	
+
 	private void readJoin() throws NumberFormatException, IOException {
 		BufferedReader bF = new BufferedReader(new FileReader(SCHEDULE_JOIN));
 		String line = bF.readLine();
@@ -46,17 +41,15 @@ public class Schedule {
 				String[] data = line.split(";");
 				String id = data[0];
 				String nrc = data[1];
+			    //System.out.println(""+id+" -->> "+nrc);
 				join.add(new Join(id, nrc));		
 		}
 		bF.close();
 	}
-	
-	
+
 	
 	@SuppressWarnings("unused")
 	public List<Subject> searchSubjectByContact(String id) throws NotExistSubjectException{
-		
-		
 		List<Subject> subjects = new ArrayList<Subject>();
 		int i = 0;
 		 while(i < join.size()) {
@@ -66,19 +59,15 @@ public class Schedule {
 					 subjects.add(subject);
 				 }
 			 }
-			 
 			 i++;
 		 }
-		 
 		 if(subjects == null) {
 			 throw new NoExistContactException();
 		 }
 		 return subjects;
 		
 	}
-	
-	
-	
+
 	// Métodos
 
 	/**
@@ -87,13 +76,11 @@ public class Schedule {
 	 * @throws IOException - error que se lanza si el archivo con los datos de los estudiantes no se encuentra.
 	 */
 	public void chargeData() throws NumberFormatException, IOException {
-
 		BufferedReader bF = new BufferedReader(new FileReader(STUDENTS_PATH));
 		String line = bF.readLine();
 		Contact contact;
 		while ((line = bF.readLine()) != null) {
 				String[] data = line.split(";");
-				
 				String id = data[0];
 				String name = data[1];
 				String lastName = data[2];
@@ -104,7 +91,6 @@ public class Schedule {
 				String bornDate = data[7];
 				int age = Integer.parseInt(data[8]);
 				String program = data[9];
-		
 				// Add Contact
 				contact = new Contact(id, name, lastName, telephone, email, semester, avatar, bornDate, age, program);
 				contacts.put(contact.getId(), contact);
@@ -112,55 +98,29 @@ public class Schedule {
 				chargeDataSubject();
 		}
 		bF.close();
-		
-		
 	}
 
 	private void chargeDataSubject() throws IOException {
 		BufferedReader bF = new BufferedReader(new FileReader(COURSES_PATH));
 		String line = bF.readLine();
-		
 		while ((line = bF.readLine()) != null) {
 				String[] data = line.split(";");
-				
-				String nrc = data[0];
-				String name = data[1];
-				int credits = Integer.parseInt(data[2]);
-				String teacherName = data[3];
+				String name = data[0];
+				String teacherName = data[1];
+				String nrc = (data[2]);
+				int credits = Integer.parseInt(data[3]);
 				int enrolledStudent = Integer.parseInt(data[4]);
-				String teacherEmail = data[5];
-				String monitorName = data[6];
-				String monitorEmail = data[7];
-				String department = data[8];
-				int group = Integer.parseInt(data[9]);
-		
 				// Add Subject
-				
-				contact.addSubject(nrc, name, credits, teacherName, enrolledStudent, teacherEmail, monitorName, monitorEmail, department, group);
-				
-			
+				contact.addSubject(name, teacherName, nrc, credits, enrolledStudent);
 		}
 		bF.close();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	/**
 	 * Busca un estudiante por su código
 	 * @param id - El código del estudiante.
 	 * @throws NoExistContactException - Error que se lanza si no se encuentra el estudiante.
 	 * @return - devuelve el estudiante con el código dado.
-	 * 
 	 */
 	public Contact searchById(String id){
 		Contact objContact = null;
@@ -168,7 +128,6 @@ public class Schedule {
 			if (cont.getId().equals(id)) {
 				objContact = cont;
 			}
-
 		}
 		return objContact;
 	}
@@ -338,23 +297,20 @@ public class Schedule {
 		return contacts;
 	}
 
-
-
-
-
 	public Contact getContact() {
 		return contact;
 	}
-
-
-
-
 
 	public void setContact(Contact contact) {
 		this.contact = contact;
 	}
 
-	
-	
-	
+	public ArrayList<Join> getJoin(){
+		return join;
+	}
+
+	public void setJoin(ArrayList<Join> join ){
+		this.join = join;
+	}
+
 }

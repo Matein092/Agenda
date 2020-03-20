@@ -1,13 +1,23 @@
-NRC;Name;Credits;Teacher Name;Enrolled students number;Teacher mail;Monitor name;Monitor email;Department;Group
-11144;IngenierÃ­a econÃ³mica;4;a;2222;a;a;a;a;1
-10446;Proyecto integrador I;3;a;2222;a;a;a;a;1
-10445;Modelado de sistemas de infomaciÃ³n;2;a;2222;a;a;a;a;1
-10819;Electricidad-magnetismo y Laboratorio;4;a;2222;a;a;a;a;1
-10818;LAB - Electricidad-magentismo y Laboratorio;0;a;2222;a;a;a;a;1
-10394;MatemÃ¡tica Discreta;3;a;2222;a;a;a;a;1
-10342;Inferencia estadÃ­stica;3;a;2222;a;a;a;a;1
-13444;Electiva en humanidades (cual???);3;a;2222;a;a;a;a;1
-12331;CÃ¡lculo de una variable :(;4;a;2222;a;a;a;a;1
-12124;Liderazgo;3;a;2222;a;a;a;a;1
-12345;Frances I;0;a;2222;a;a;a;a;1
-10321;AlemÃ¡n II;0;a;2222;a;a;a;a;1
+#Name;Teacher Name;NRC;Credits;EnrolledStudent
+Ingeniería Económica;Diana Ramirez;11144;4;32
+Proyecto Integrador I;Juan Manuel Reyes y Cristian;10446;3;32
+Modelado de Sistemas de Infomación;Ángela Villota;10445;2;34
+Electricidad-Magnetismo;Hernan Triana;10819;4;36
+LAB - Electricidad-Magentismo;Luis;10818;0;32
+Matemática Discreta;Uram Anibal Sosa;10394;3;35
+Inferencia Estadística;Rubén Corrales;10342;3;37
+Cálculo de una Variable;Luis Gamarra;10384;4;41
+Liderazgo;;10903;3;38
+Frances I;;10294;0;35
+Alemán II;;10321;0;36
+LAB - Física y Laboratorio;;10816;0;35
+Cálculo Varias Variables;;10391;4;38
+Física y Laboratorio;;10809;4;39
+Informática Teórica;Andrés Aristizabal;10406;3;35
+Electiva en Problemas Colombianos: Ensayos para la Habana;Luis Barón Porras;11976;3;34
+Fisica y Laboratorio;Hernán Triana;10809;4;32
+LAB - Física y Laboratorio;Luis Giraldo;10806;0;33
+Redes ;Yor Jaggy Castaño;10799;4;33
+LAB - Redes ;Rodrigo de la Peï¿½a;11167;0;26
+Inglés VII;Maria J. Franky;11467;0;27
+Ética y Tecnología;Raquel Díaz;10716;2;42

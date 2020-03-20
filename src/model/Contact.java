@@ -1,11 +1,9 @@
 package model;
 
-
 import java.util.*;
 
 public class Contact {
 
-	
 	// Attributes
 	private String id;
 	private String name;
@@ -17,18 +15,16 @@ public class Contact {
 	private String bornDate;
 	private int age;
 	private String program;
+
 	// Association
 	private HashMap<String, Subject> subj;
-	
-	
-	
+
+	// Constructor
 	public Contact() {
 		subj = new HashMap<>();
 	}
-
-	// Constructor
 	public Contact(String id, String name, String lastName, String telephone, String email, int semester, String avatar,
-			String bornDate, int age, String program) {
+				   String bornDate, int age, String program) {
 		this.id = id;
 		this.name = name;
 		this.lastName = lastName;
@@ -40,198 +36,99 @@ public class Contact {
 		this.age = age;
 		this.program = program;
 
-		
+		subj = new HashMap<>();
 	}
 
-	
-	
-	
-	
+
 	public String getId() {
 		return id;
 	}
-
-
-
-
 
 	public void setId(String id) {
 		this.id = id;
 	}
 
-
-
-
-
 	public String getName() {
 		return name;
 	}
-
-
-
-
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
-
-
-
 	public String getLastName() {
 		return lastName;
 	}
-
-
-
-
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
-
-
-
-
 	public String getTelephone() {
 		return telephone;
 	}
-
-
-
-
 
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 
-
-
-
-
 	public String getEmail() {
 		return email;
 	}
-
-
-
-
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
-
-
-
 	public int getSemester() {
 		return semester;
 	}
-
-
-
-
 
 	public void setSemester(int semester) {
 		this.semester = semester;
 	}
 
-
-
-
-
 	public String getAvatar() {
 		return avatar;
 	}
-
-
-
-
 
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
 
-
-
-
-
 	public String getBornDate() {
 		return bornDate;
 	}
-
-
-
-
 
 	public void setBornDate(String bornDate) {
 		this.bornDate = bornDate;
 	}
 
-
-
-
-
 	public int getAge() {
 		return age;
 	}
-
-
-
-
 
 	public void setAge(int age) {
 		this.age = age;
 	}
 
-
-
-
-
 	public String getProgram() {
 		return program;
 	}
-
-
-
-
 
 	public void setProgram(String program) {
 		this.program = program;
 	}
 
-
-
-
 	//////////////////////////////////////////////////////////////////
 	//////////////////////Metodos materia/////////////////////////////
 	//////////////////////////////////////////////////////////////////
-	
-	
-	
-	
-	/**
-	 * Buscar primero el subject == faltas
-	 * @param name
-	 * @param nrc
-	 * @param enrolledStudent
-	 * @param teacherName
-	 * @param teacherEmail
-	 * @param monitorName
-	 * @param monitorEmail
-	 * @param department
-	 * @param group
-	 */
-	public void addSubject(String nrc, String name, int credits, String teacherName, int enrolledStudent,
-			String teacherEmail, String monitorName, String monitorEmail, String department, int group) {
-		
-		Subject subject = new Subject(nrc, name, credits, teacherName, enrolledStudent, teacherEmail, monitorName, monitorEmail, department, group);
+
+
+	public void addSubject(String name,  String teacherName, String nrc,  int credits, int enrolledStudent) {
+		Subject subject = new Subject(name,teacherName,nrc,credits,enrolledStudent);
 		subj.put(nrc, subject);
 	}
-
 
 	public HashMap<String, Subject> getSubj() {
 		return subj;
@@ -240,16 +137,15 @@ public class Contact {
 	public void setSubj(HashMap<String, Subject> subj) {
 		this.subj = subj;
 	}
-	
-	
+
 	/**
-	 *  Permite buscar una materia de un contacto.
+	 * Permite buscar una materia de un contacto.
 	 * @param nrc
 	 * @return
 	 */
 	public Subject searchSubject(String nrc) {
 		Subject subject = null;
-		for (Subject s: subj.values()) {
+		for (Subject s : subj.values()) {
 			if (s.getNrc().equals(nrc)) {
 				subject = s;
 			}
@@ -259,15 +155,15 @@ public class Contact {
 
 	/**
 	 * Este metodo se encarga de eliminar los contactos
+	 *
 	 * @param nrc
 	 */
 	public void deleteSubject(String nrc) {
 		Subject subject = searchSubject(nrc);
-		if(subject != null) {
+		if (subject != null) {
 			subj.remove(nrc);
 		}
 	}
-
 
 	public String showSubjectByNrc(String nrc) {
 		String msg = " ";
@@ -275,38 +171,36 @@ public class Contact {
 		return msg;
 	}
 
-	
-
 	@Override
 	public String toString() {
 		return "Contact [name=" + name + ", lastName=" + lastName + ", telephone=" + telephone + ", email=" + email
-				+ ", id=" + id + ", semester=" + semester + ", avatar=" + avatar + ", birthday=" + bornDate + ", age="
-				+ age + ", program=" + program + ", subjects=" + subj + "]";
+					   + ", id=" + id + ", semester=" + semester + ", avatar=" + avatar + ", birthday=" + bornDate + ", age="
+					   + age + ", program=" + program + ", subjects=" + subj + "]";
 	}
 
+	/**
+	public void modifySubject(String name, int nrc, int enrolledStudent, String teacherName, String teacherEmail,
+							  String monitorName, String monitorEmail, String department, int group) {
+		Subject objS = searchSubject(nrc);
+		if (objS != null) {
+			objS.setName(name);
+			objS.setNrc(nrc);
+			objS.setTeacherName(teacherName);
+			objS.setTeacherEmail(teacherEmail);
+			objS.setMonitorName(monitorName);
+			objS.setMonitorEmail(monitorEmail);
+			objS.setDepartment(department);
+			objS.setGroup(group);
+		} else {
+
+		}
+
+	}
+	 **/
 }
 
 
-
-/**
-public void modifySubject(String name, int nrc, int enrolledStudent, String teacherName, String teacherEmail,
-		String monitorName, String monitorEmail, String department, int group) {
-	Subject objS = searchSubject(nrc);
-	if (objS != null) {
-		objS.setName(name);
-		objS.setNrc(nrc);
-		objS.setTeacherName(teacherName);
-		objS.setTeacherEmail(teacherEmail);
-		objS.setMonitorName(monitorName);
-		objS.setMonitorEmail(monitorEmail);
-		objS.setDepartment(department);
-		objS.setGroup(group);
-	} else {
-
-	}
-
-}
-
+ /**
 */
 /**
 public void addSubject(String name, int nrc, int enrolledStudent, String teacherName, String teacherEmail,

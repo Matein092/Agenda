@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import model.Contact;
+import model.Join;
 import model.Schedule;
 import model.Subject;
 
@@ -25,140 +26,105 @@ import java.util.ResourceBundle;
  */
 public class ScheduleController implements Initializable {
 
-    @FXML
-    private ImageView ivPhoto;
+	@FXML
+	private ImageView ivPhoto;
 
-    @FXML
-    private TextField tfName;
+	@FXML
+	private TextField tfName;
 
-    @FXML
-    private TextField tfLastName;
+	@FXML
+	private TextField tfLastName;
 
-    @FXML
-    private TextField tfCode;
+	@FXML
+	private TextField tfCode;
 
-    @FXML
-    private TextField tfTelephone;
+	@FXML
+	private TextField tfTelephone;
 
-    @FXML
-    private TextField tfEmail;
+	@FXML
+	private TextField tfEmail;
 
-    @FXML
-    private TextField tfCareer;
+	@FXML
+	private TextField tfCareer;
 
-    @FXML
-    private TextField tfSemester;
+	@FXML
+	private TextField tfSemester;
 
-    @FXML
-    private DatePicker dpBornDate;
+	@FXML
+	private DatePicker dpBornDate;
 
-    @FXML
-    private TextField tfAge;
+	@FXML
+	private TextField tfAge;
 
-    @FXML
-    private Button btNewContact;
+	@FXML
+	private Button btNewContact;
 
-    @FXML
-    private Button btSaveContact;
+	@FXML
+	private Button btSaveContact;
 
-    @FXML
-    private Button btDeleteContact;
+	@FXML
+	private Button btDeleteContact;
 
-    @FXML
-    private Button btUpdateContact;
+	@FXML
+	private Button btUpdateContact;
 
-    @FXML
-    private TextField tfSearch;
+	@FXML
+	private TextField tfSearch;
 
-    @FXML
-    private ComboBox<String> cbCriterio;
+	@FXML
+	private ComboBox<String> cbCriterio;
 
-    @FXML
-    private TextField tfNRC;
+	@FXML
+	private TextField tfNRC;
 
-    @FXML
-    private TextField tfNameSubject;
+	@FXML
+	private TextField tfNameSubject;
 
-    @FXML
-    private TextField tfCredits;
+	@FXML
+	private TextField tfCredits;
 
-    @FXML
-    private TextField tfTeacher;
+	@FXML
+	private TextField tfTeacher;
 
-    @FXML
-    private TextField tfEnrolledStudent;
+	@FXML
+	private TextField tfEnrolledStudent;
 
-    @FXML
-    private TextField tfTeacherEmail;
+	@FXML
+	private ListView<String> lvCourses;
 
-    @FXML
-    private TextField tfMonitor;
+	@FXML
+	private Label lbCoursesAverage;
 
-    @FXML
-    private TextField tfMonitorEmail;
+	@FXML
+	private Label lbMostEnrolledCourse;
 
-    @FXML
-    private TextField tfDepartament;
+	@FXML
+	private Label lbLessEnrolledCourse;
 
-    @FXML
-    private TextField tfGroup;
+	@FXML
+	private ListView<?> lvAllCourses;
 
-    @FXML
-    private ListView<String> lvCourses;
+	@FXML
+	private TextField tfNRCSummary;
 
-    @FXML
-    private Button btNewCourse;
+	@FXML
+	private TextField tfCreditHoursSummary;
 
-    @FXML
-    private Button btSaveCourse;
+	@FXML
+	private TextField tfInstructorSummary;
 
-    @FXML
-    private Button btDeleteCourse;
+	@FXML
+	private TextField tfEnrolleStudentsSummary;
 
-    @FXML
-    private Button btUpdateCourse;
+	@FXML
+	private TextField tfNameSubjectSummary;
 
-    @FXML
-    private Label lbCoursesAverage;
+	@FXML
+	private Label lbStudentsPerCourse;
 
-    @FXML
-    private Label lbMostEnrolledCourse;
+	@FXML
+	private Label lbCreditHoursAverage;
 
-    @FXML
-    private Label lbLessEnrolledCourse;
-
-    @FXML
-    private ListView<String> lvAllCourses;
-
-    @FXML
-    private TextField tfNRCSummary;
-
-    @FXML
-    private TextField tfCreditHoursSummary;
-
-    @FXML
-    private TextField tfLevelSummary;
-
-    @FXML
-    private TextField tfInstructorSummary;
-
-    @FXML
-    private TextField tfCampusSummary;
-
-    @FXML
-    private TextField tfBuildingSummary;
-
-    @FXML
-    private TextField tfRoomSummary;
-
-    @FXML
-    private TextField tfTimeSummary;
-
-    @FXML
-    private Label lbStudentsPerCourse;
-
-    @FXML
-    private Label lbCreditHoursAverage;
 
 	/*
 	 * Indica la posición de un estudiante en la hastTable.
@@ -172,6 +138,8 @@ public class ScheduleController implements Initializable {
 	 */
 	private Schedule schedule;
 	private String currentId;
+	private String currentNRC;
+	private Subject currentSubject;
 
 	// Inicializador
 
@@ -194,10 +162,11 @@ public class ScheduleController implements Initializable {
 		
 
 		pos = 0;
-		currentId = null;
+		currentId = "";
+		currentNRC = "";
+		currentSubject = null;
 		cbCriterio.getItems().addAll("NOMBRE", "APELLIDO", "FECHA NACIMIENTO", "CÓDIGO");
 		printContacts(); // Muestra los datos de los estudiantes en la interfaz de usuario.
-		
 
 	}
 
@@ -209,19 +178,16 @@ public class ScheduleController implements Initializable {
 	public void printContacts() {
 		printContact(searchPosContact(pos));
 		printListViewSubject();
-
 	}
 
 	/**
 	 * Busca un contacto a partir de la posición en la HastTable.
-	 * 
 	 * @param pos - La posición del contacto.
 	 * @return Un contacto, null si no lo encuentra.
 	 */
 	public Contact searchPosContact(int pos) {
 		Contact contact = null;
 		List<Contact>  contactList = new ArrayList<Contact>(schedule.getContacts().values());
-
 			if (pos >= 0 && pos < contactList.size()) {
 				contact = contactList.get(pos);
 				currentId = contact.getId();
@@ -231,11 +197,9 @@ public class ScheduleController implements Initializable {
 
 	/**
 	 * Muesta los datos de un estudiante.
-	 * 
 	 * @param contact - El a mostrar.
 	 */
 	private void printContact(Contact contact) {
-
 		try {
 			tfName.setText("");
 			if (!contact.getName().equals("")) {
@@ -281,20 +245,17 @@ public class ScheduleController implements Initializable {
 			men.setContentText("El estudiante buscado no existe.");
 			men.showAndWait();
 		}
-		
 	}
 	
-	
-	
-	
+
 	//------------------------000-------------------
 	/**
 	 * Las materias de un contacto en especifico.
-	 * @param contact contacto para buscar la materia
 	 */
 	private void printListViewSubject() {
 		lvCourses.getItems().clear();
-		
+		clearCourse();
+
 		List<Subject> founds = null;
 		try {
 			founds = schedule.searchSubjectByContact(tfCode.getText());
@@ -304,59 +265,46 @@ public class ScheduleController implements Initializable {
 			men.setHeaderText("Estudiante no encontrado");
 			men.setContentText("El estudiante buscado no existe.");
 			men.showAndWait();
-
 		}
 		
 		if(founds != null) {
 			for(int i = 0; i < founds.size(); i++) {
-				lvCourses.getItems().add(founds.get(i).toString());
+				lvCourses.getItems().add(founds.get(i).getNrc()+"-"+founds.get(i).getName());
 			}
 		}
 	}
 	
-	
 	//---------------------------000---------------
 		
-	 @FXML
+	    @FXML
 	    void ListViewCourse(MouseEvent event) {
-		
-		
+
 		 String seletion = lvCourses.getSelectionModel().getSelectedItem();
 
 		 if(seletion != null) {
-			 String[] data = seletion.split(",");
+			 String[] data = seletion.split("-");
 			 String nrc = data[0];
+			 currentNRC = nrc;
 			 // Busca la materia del contacto.
-			 Subject subject = schedule.getContact().searchSubject(nrc);		 
+			 Subject subject = schedule.getContact().searchSubject(nrc);
+			 currentSubject = subject;
 			 
 			 if(subject != null) {
-				 
 				 tfNRC.setText(subject.getNrc());
 				 tfNameSubject.setText(subject.getName());
 				 tfCredits.setText(String.valueOf(subject.getCredits()));
 				 tfTeacher.setText(subject.getTeacherName());
 				 tfEnrolledStudent.setText(String.valueOf(subject.getEnrolledStudent()));
-				 tfTeacherEmail.setText(subject.getTeacherEmail());	
-				 tfMonitor.setText(subject.getMonitorName());
-				 tfMonitorEmail.setText(subject.getMonitorEmail());
-				 tfDepartament.setText(subject.getDepartment());
-				 tfGroup.setText(String.valueOf(subject.getGroup()));
-				 	
-				 
 			 }
 		 }
-		 
 	    }
-
-	 
 
 	    @FXML
 	    void btDeleteCourse(ActionEvent event) {
-	    	
+
 	    	String nrcSubject = tfNRC.getText();
 	    	String elementToClear =lvCourses.getSelectionModel().getSelectedItem();
 	    	lvCourses.getItems().remove(elementToClear);
-	    	
 	    	schedule.getContact().deleteSubject(nrcSubject);
 	    	clearCourse();
 	    }
@@ -367,11 +315,6 @@ public class ScheduleController implements Initializable {
 	    	tfCredits.clear();
 	    	tfTeacher.clear();
 	    	tfEnrolledStudent.clear();
-	    	tfTeacherEmail.clear();
-	    	tfMonitor.clear();
-	    	tfMonitorEmail.clear();
-	    	tfDepartament.clear();
-	    	tfGroup.clear();
 	    }
 
 	    @FXML
@@ -381,37 +324,45 @@ public class ScheduleController implements Initializable {
 
 	    @FXML
 	    void btSaveCourse(ActionEvent event) {
-	    	
+
 	    	String nrc = tfNRC.getText();
 	    	String name = tfNameSubject.getText();
 	    	int credits =Integer.parseInt(tfCredits.getText());
 	    	String teacherName = tfTeacher.getText();
 	    	int enrolledStudent = Integer.parseInt(tfEnrolledStudent.getText());
-	    	String teacherEmail = tfTeacherEmail.getText();
-	    	String monitorName = tfMonitor.getText();
-	    	String monitorEmail = tfMonitorEmail.getText();
-	    	String department = tfDepartament.getText();
-	    	int group = Integer.parseInt(tfGroup.getText());
-	    	schedule.getContact().addSubject(nrc, name, credits, teacherName, enrolledStudent, teacherEmail, monitorName, monitorEmail, department, group);
+
+	    	schedule.getJoin().add(new Join(tfCode.getText(),nrc));
+	    	//schedule.getContact().addSubject(name, nrc, teacherName, credits, enrolledStudent);
+	    	schedule.getContacts().get(tfCode.getText()).addSubject(name,nrc,teacherName,credits,enrolledStudent);
+	    	Subject s = schedule.getContacts().get(tfCode.getText()).searchSubject(nrc);
+	    	lvCourses.getItems().add(nrc+"-"+name);
 	    	clearCourse();
 	    }
 
 	    @FXML
 	    void btUpdateCourse(ActionEvent event) {
 
-	    }
-	 
-	 
-	 
-	 
-	 
-	 
+		/**
+			System.out.println(currentNRC);
+			Contact c = schedule.getContacts().get(tfCode.getText());
+			Subject s = c.searchSubject(currentNRC);
+		 **/
+
+			schedule.getContacts().get(tfCode.getText()).deleteSubject(currentSubject.getNrc());
+
+			currentSubject.setName(tfNameSubject.getText());
+			currentSubject.setNrc(tfNRC.getText());
+			currentSubject.setTeacherName(tfTeacher.getText());
+			currentSubject.setCredits(Integer.parseInt(tfCredits.getText()));
+			currentSubject.setEnrolledStudent(Integer.parseInt(tfEnrolledStudent.getText()));
+
+			schedule.getContacts().get(tfCode.getText()).getSubj().put(currentSubject.getNrc(),currentSubject);
+		}
+
 	 /////////////////////////////////////////////////////////////////////////////
 	 ///////////////////////////////Contacto//////////////////////////////////////
 	 /////////////////////////////////////////////////////////////////////////////
 
-	 
-	 
 	/**
 	 * Muestra el estudiante anterior.
 	 */
@@ -456,7 +407,6 @@ public class ScheduleController implements Initializable {
 		tfAge.setText("");
 	}
 
-
 	/**
 	 * Guarda un nuevo estudiante.
 	 */
@@ -498,7 +448,6 @@ public class ScheduleController implements Initializable {
 
 		pos+=1;
 		printContacts();
-
 	}
 
 	/**
@@ -528,10 +477,7 @@ public class ScheduleController implements Initializable {
 		}
 	}
 
-
 	@FXML
 	public void searchForCriterio(){}
-
-
 
 }
