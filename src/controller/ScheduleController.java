@@ -102,7 +102,7 @@ public class ScheduleController implements Initializable {
     private Label lbLessEnrolledCourse;
 
     @FXML
-    private ListView<?> lvAllCourses;
+    private ListView<String> lvAllCourses;
 
     @FXML
     private TextField tfNRCSummary;
@@ -145,7 +145,7 @@ public class ScheduleController implements Initializable {
     private Schedule schedule;
     private String currentId;
     private String currentNRC;
-    private Subject currentSubject;
+    private Subject cSubject;
     private Contact currentContact;
 
     // Inicializador
@@ -170,14 +170,48 @@ public class ScheduleController implements Initializable {
         pos = 0;
         currentId = "";
         currentNRC = "";
-        currentSubject = null;
+        cSubject = null;
         currentContact = null;
         cbCriterio.getItems().addAll("NOMBRE", "APELLIDO", "FECHA NACIMIENTO", "CÓDIGO");
+
         printContacts(); // Muestra los datos de los estudiantes en la interfaz de usuario.
 
+        printAllSubjects();
     }
 
     // Métodos
+
+    public void printAllSubjects() {
+        for (Subject cSubject : schedule.getAllSubjects()){
+            lvAllCourses.getItems().add(cSubject.getNrc() + "-" + cSubject.getName());
+        }
+    }
+
+    @FXML
+    public void lvAllCoursesPressed(MouseEvent event){
+        String seletion = lvAllCourses.getSelectionModel().getSelectedItem();
+
+        if (seletion != null) {
+            String[] data = seletion.split("-");
+            String nrc = data[0];
+            // Busca la materia del contacto.
+            Subject cSubject = null;
+            boolean found = false;
+            for(int i=0; i<schedule.getAllSubjects().size() && !found;i++){
+                if (schedule.getAllSubjects().get(i).getNrc().equals(nrc)){
+                    cSubject = schedule.getAllSubjects().get(i);
+                    found = true;
+                }
+            }
+            if (cSubject != null) {
+                tfNRCSummary.setText(cSubject.getNrc());
+                tfNameSubjectSummary.setText(cSubject.getName());
+                tfCreditHoursSummary.setText(String.valueOf(cSubject.getCredits()));
+                tfInstructorSummary.setText(cSubject.getTeacherName());
+                tfEnrolleStudentsSummary.setText(String.valueOf(cSubject.getEnrolledStudent()));
+            }
+        }
+    }
 
     /**
      * Muestra los datos de los estudiantes a partir de la posición.
@@ -309,14 +343,14 @@ public class ScheduleController implements Initializable {
             String nrc = data[0];
             currentNRC = nrc;
             // Busca la materia del contacto.
-            currentSubject = schedule.getContact().searchSubject(nrc);
+            cSubject = schedule.getContact().searchSubject(nrc);
 
-            if (currentSubject != null) {
-                tfNRC.setText(currentSubject.getNrc());
-                tfNameSubject.setText(currentSubject.getName());
-                tfCredits.setText(String.valueOf(currentSubject.getCredits()));
-                tfTeacher.setText(currentSubject.getTeacherName());
-                tfEnrolledStudent.setText(String.valueOf(currentSubject.getEnrolledStudent()));
+            if (cSubject != null) {
+                tfNRC.setText(cSubject.getNrc());
+                tfNameSubject.setText(cSubject.getName());
+                tfCredits.setText(String.valueOf(cSubject.getCredits()));
+                tfTeacher.setText(cSubject.getTeacherName());
+                tfEnrolledStudent.setText(String.valueOf(cSubject.getEnrolledStudent()));
             }
         }
     }
@@ -364,15 +398,15 @@ public class ScheduleController implements Initializable {
     @FXML
     public void btUpdateCourse(ActionEvent event) {
 
-        schedule.getContact().deleteSubject(currentSubject.getNrc());
+        schedule.getContact().deleteSubject(cSubject.getNrc());
 
-        currentSubject.setName(tfNameSubject.getText());
-        currentSubject.setNrc(tfNRC.getText());
-        currentSubject.setTeacherName(tfTeacher.getText());
-        currentSubject.setCredits(Integer.parseInt(tfCredits.getText()));
-        currentSubject.setEnrolledStudent(Integer.parseInt(tfEnrolledStudent.getText()));
+        cSubject.setName(tfNameSubject.getText());
+        cSubject.setNrc(tfNRC.getText());
+        cSubject.setTeacherName(tfTeacher.getText());
+        cSubject.setCredits(Integer.parseInt(tfCredits.getText()));
+        cSubject.setEnrolledStudent(Integer.parseInt(tfEnrolledStudent.getText()));
 
-        schedule.getContact().getSubj().put(currentSubject.getNrc(), currentSubject);
+        schedule.getContact().getSubj().put(cSubject.getNrc(), cSubject);
     }
 
     /////////////////////////////////////////////////////////////////////////////
