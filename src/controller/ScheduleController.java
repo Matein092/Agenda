@@ -6,10 +6,12 @@ import exceptions.NotExistSubjectException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import model.Contact;
 import model.Join;
 import model.Schedule;
@@ -615,6 +617,16 @@ public class ScheduleController implements Initializable {
             men.setContentText("El estudiante buscado no existe.");
             men.showAndWait();
         }
+    }
+    
+
+    @FXML
+    private void cerrarVentana(ActionEvent event) {
+
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        schedule.savedData();
+        stage.close();
     }
 
 }
