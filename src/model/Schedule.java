@@ -3,11 +3,10 @@ package model;
 import exceptions.ExistStudentException;
 import exceptions.NoExistContactException;
 import exceptions.NotExistSubjectException;
-
+import java.util.List;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -241,14 +240,16 @@ public class Schedule {
      * @param bornDate - La fecha de nacimiento.
      * @return - El estudiante.
      */
-    public Contact searchByBornDate(String bornDate) {
+    public ArrayList<Contact> searchByBornDate(String bornDate) {
         Contact objContact = null;
+        ArrayList<Contact> listContact = new ArrayList<Contact>();
         for (Contact cont : contacts.values()) {
             if (cont.getBornDate().equals(bornDate)) {
                 objContact = cont;
+                listContact.add(objContact);
             }
         }
-        return objContact;
+        return listContact;
     }
 
     /**
@@ -257,14 +258,16 @@ public class Schedule {
      * @param name - El nombre.
      * @return - El estudiante.
      */
-    public Contact searchByName(String name) {
+    public ArrayList<Contact> searchByName(String name) {
         Contact objContact = null;
+        ArrayList<Contact> listContact = new ArrayList<Contact>();
         for (Contact cont : contacts.values()) {
             if (cont.getName().equals(name)) {
                 objContact = cont;
+                listContact.add(objContact);
             }
         }
-        return objContact;
+        return listContact;
     }
 
     /**
@@ -273,14 +276,16 @@ public class Schedule {
      * @param lastName - El apellido.
      * @return - El estudiante.
      */
-    public Contact searchByLastName(String lastName) {
+    public ArrayList<Contact> searchByLastName(String lastName) {
         Contact objContact = null;
+        ArrayList<Contact> listContact = new ArrayList<Contact>();
         for (Contact cont : contacts.values()) {
             if (cont.getLastName().equals(lastName)) {
                 objContact = cont;
+                listContact.add(objContact);
             }
         }
-        return objContact;
+        return listContact;
     }
 
     /**

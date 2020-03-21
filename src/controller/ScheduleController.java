@@ -536,21 +536,21 @@ public class ScheduleController implements Initializable {
         try {
             if (cbCriterio.getValue().equals("NOMBRE")) {
                 if (tfSearch.getText() != null || !tfSearch.equals("")) {
-                    printContact(schedule.searchByName(tfSearch.getText()));
+                    //printContact(schedule.searchByName(tfSearch.getText()));
                     printListViewSubject();
                     cbCriterio.getSelectionModel().select(0);
                     tfSearch.setText("");
                 }
             } else if (cbCriterio.getValue().equals("APELLIDO")) {
                 if (tfSearch.getText() != null || !tfSearch.equals("")) {
-                    printContact(schedule.searchByLastName(tfSearch.getText()));
+                    //printContact(schedule.searchByLastName(tfSearch.getText()));
                     printListViewSubject();
                     cbCriterio.getSelectionModel().select(0);
                     tfSearch.setText("");
                 }
             } else if (cbCriterio.getValue().equals("FECHA NACIMIENTO")) {
                 if (tfSearch.getText() != null || !tfSearch.equals("")) {
-                    printContact(schedule.searchByBornDate(tfSearch.getText()));
+                    //printContact(schedule.searchByBornDate(tfSearch.getText()));
                     printListViewSubject();
                     cbCriterio.getSelectionModel().select(0);
                     tfSearch.setText("");
