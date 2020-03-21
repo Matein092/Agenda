@@ -418,16 +418,14 @@ public class Schedule {
      * @param lastName - El apellido.
      * @return - El estudiante.
      */
-    public ArrayList<Contact> searchByLastName(String lastName) {
+    public Contact searchByLastName(String lastName) {
         Contact objContact = null;
-        ArrayList<Contact> listContact = new ArrayList<Contact>();
         for (Contact cont : contacts.values()) {
             if (cont.getLastName().equals(lastName)) {
                 objContact = cont;
-                listContact.add(objContact);
             }
         }
-        return listContact;
+        return objContact;
     }
 
     /**

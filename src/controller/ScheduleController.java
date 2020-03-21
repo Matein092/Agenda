@@ -242,23 +242,6 @@ public class ScheduleController implements Initializable {
         }
         return contact;
     }
-    
-    public Contact resultSearchLastName(int p, String lastName) {
-    	Contact c = null;
-    	List<Contact> cList = new ArrayList<Contact>(schedule.searchByLastName(lastName));
-    	if (pos >= 0 && pos < cList.size()) {
-            c = cList.get(pos);
-            currentId = c.getId();
-            currentContact = c;
-           // schedule.setContact(contact);
-        }
-        return c;
-    }
-    
-    public void printContactsLastName(String lastName) {
-        printContact(resultSearchLastName(0, lastName));
-        printListViewSubject();
-    }
 
     /**
      * Muesta los datos de un estudiante.
@@ -590,7 +573,7 @@ public class ScheduleController implements Initializable {
                 }
             } else if (cbCriterio.getValue().equals("APELLIDO")) {
                 if (tfSearch.getText() != null || !tfSearch.equals("")) {
-                	printContactsLastName(tfSearch.getText());
+                	printContact(schedule.searchByLastName(tfSearch.getText()));
                     printListViewSubject();
                     cbCriterio.getSelectionModel().select(0);
                     tfSearch.setText("");
