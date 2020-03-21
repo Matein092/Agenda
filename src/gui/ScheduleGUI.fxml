@@ -105,7 +105,7 @@
                                 <HBox alignment="CENTER" layoutX="14.0" layoutY="12.0" prefHeight="29.0" prefWidth="247.0" spacing="10.0" style="-fx-background-color: #e8e8e8;">
                                     <children>
                                         <TextField fx:id="tfSearch" promptText="Buscar" style="-fx-background-color: #cfcfcf;" />
-                                        <ComboBox fx:id="cbCriterio" prefWidth="150.0" promptText="Criterio" style="-fx-background-color: #bababa;" />
+                                        <ComboBox fx:id="cbCriterio" onAction="#searchForCriterio" prefWidth="150.0" promptText="Criterio" style="-fx-background-color: #bababa;" />
                                     </children>
                                 </HBox>
                                 <HBox alignment="CENTER" layoutX="38.0" layoutY="230.0" prefHeight="26.0" prefWidth="200.0" spacing="20.0">
@@ -223,7 +223,7 @@
                                         <Font name="System Bold" size="12.0" />
                                     </font>
                                 </Label>
-                                <ListView fx:id="lvAllCourses" prefHeight="252.0" prefWidth="363.0" />
+                                <ListView fx:id="lvAllCourses" onMousePressed="#lvAllCoursesPressed" prefHeight="252.0" prefWidth="363.0" />
                             </children>
                         </VBox>
                         <VBox alignment="CENTER" layoutX="387.0" layoutY="201.0" prefHeight="343.0" prefWidth="398.0" spacing="10.0" style="-fx-background-color: #e8e8e8;">
@@ -260,16 +260,6 @@
                                                 </GridPane>
                                             </center>
                                         </BorderPane>
-                                    </children>
-                                </HBox>
-                                <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="331.0" spacing="10.0">
-                                    <children>
-                                        <Label text="Numero de estudiantes matriculados ">
-                                            <font>
-                                                <Font name="System Bold" size="12.0" />
-                                            </font>
-                                        </Label>
-                                        <Label fx:id="lbStudentsPerCourse" text="x" />
                                     </children>
                                 </HBox>
                             </children>

@@ -1,25 +1,25 @@
-Codigo;Nombre;Apellido;Telefono;Email;Semestre;Foto;Cumplea√±os (D√≠a/Mes/A√±o);Edad;Carrera
+Codigo;Nombre;Apellido;Telefono;Email;Semestre;Foto;CumpleaÒos (DÌa/Mes/AÒo);Edad;Carrera
 A00355710;Jhon Edward;Mora Mora;3166360553;jhonedmora@gmail.com;5;.\\img\\mora.jpeg;13/12/2000;19;Software Systems Engineering
 A00351728;Manuel  ;Balanta Quintero;3218746583;mbalantaq@gmail.com;5;.\\img\\balanta.jpg;07/03/2000;19;Software Engineering
 A00351771;Juan Diego;Naranjo Tafur;3145608074;juannaranjo1206@gmail.com;5;.\\img\\naranjo.gif;12/06/2000;19;Software Engineering
-A00351422;Mateo;Ram√≠rez Rodr√≠guez;3174149631;mateoboom@hotmail.com;5;;10/11/2000;19;Software Engineering
+A00351422;Mateo;RamÌrez RodrÌguez;3174149631;mateoboom@hotmail.com;5;;10/11/2000;19;Software Engineering
 A00354577;Sergio Alejandro;Cabrera Nieto;3214286125;sergiocabreranieto@gmail.com;5;.\\img\\cabrera.jpg;11/10/1999;20;Software Engineering
 A00354573;Juan David;Lectamo;3134567865;l3c74m0@gmail.com;5;.\\img\\lectamo.jpg;12/10/1999;19;Software Engineering
 A00354217;Jairo Emilio ;Rodriguez Viveros;3101234452;jairitox2000@gmail.com;5;;29/03/2000;19;Software Engineering
 A00355275;Critian Camilo;Lasso Hernandez;3165301157;crisca_25@hotmail.com;5;;25/06/2000;19;Software Engineering
 A00355457;Jose David;Jimenez Florez;3133133113;jdjimenez04@hotmail.com;5;.\\img\\jimenez.jpg;05/10/2000;19;Software Engineering
-A00345638;Juan Jos√©;Calder√≥n Holgu√≠n;3017552522;juancalderon721@outlook.com;6;.\\img\\calderon.jpg;07/02/2001;18;Software Engineering
+A00345638;Juan JosÈ;CalderÛn HolguÌn;3017552522;juancalderon721@outlook.com;6;.\\img\\calderon.jpg;07/02/2001;18;Software Engineering
 A00355117;Yimar David;Tamayo Hernandez;3164403798;yimar2001@gmail.com;5;.\\img\\tamayo.jpg;22/04/2001;18;Software Engineering
 A00354350;Alejandro;Martinez Martinez;3112345674;alejomam2011@gmail.com;5;;27/03/2000;19;Software Engineering
 A00345026;Cesar;Canales;3128854847;sleepata6@gmail.com;5;;08/09/1999;20;Software Systems andTelematic Engineering
-A00354694;Daniel;Fern√°ndez;3122199411;alejo.dafr@gmail.com;5;.\\img\\fernandez.jpg;03/04/2001;18;Software Engineering
-A00352237;Ana Mar√≠a ;Mu√±oz Valencia;3017980082;cnscanamariamv@gmail.com;5;.\\img\\munioz.jpg;11/08/2000;19;Software Engineering
-A00356210;Juan David;Hern√°ndez;3155462882;juanher0825@gmail.com;5;;25/08/2000;19;Software Engineering
+A00354694;Daniel;Fern·ndez;3122199411;alejo.dafr@gmail.com;5;.\\img\\fernandez.jpg;03/04/2001;18;Software Engineering
+A00352237;Ana MarÌa ;MuÒoz Valencia;3017980082;cnscanamariamv@gmail.com;5;.\\img\\munioz.jpg;11/08/2000;19;Software Engineering
+A00356210;Juan David;Hern·ndez;3155462882;juanher0825@gmail.com;5;;25/08/2000;19;Software Engineering
 A00355624;Christian ;Flor Astudillo;3006780898;christian.flor43@gmail.com;5;;07/05/2001;18;Software Systems andTelematic Engineering
-A00354904;Juan Jos√©;Valencia Jaramillo;3136353922;juanchouni@hotmail.com;5;.\\img\\valencia.jpg;13/03/2002;17;Software Engineering 
+A00354904;Juan JosÈ;Valencia Jaramillo;3136353922;juanchouni@hotmail.com;5;.\\img\\valencia.jpg;13/03/2002;17;Software Engineering 
 A00348435;Oscar Ivan ;Riascos Guevara;3152363380;osvan202@gmail.com;5;.\\img\\riascos.png;17/02/2000;19;Software Engineering
 A00355727;Luis Felipe;Sanchez Vega;3176737525;vegafelipe015@gmail.com;5;.\\img\\sanchez.jpg;27/09/2000;19;Software Engineering
-A00049152;El√≠as;Estupi√±an;3225921114;simply753@gmail.com;6;.\\img\\estupinian.png;12/12/1996;23;Software Engineering
+A00049152;ElÌas;EstupiÒan;3225921114;simply753@gmail.com;6;.\\img\\estupinian.png;12/12/1996;23;Software Engineering
 A00354849;Natalia Isabel;Gonzalez Murillo;3217335600;natalia.gonzalez3@correo.icesi.edu.co;5;;26/11/1999;20;Software Engineering
 A00295744;Johann Andrei;Ocampo Torres;3156352435;johann0117@live.com;5;.\\img\\ocampo.png;20/06/2000;19;Software Engineering
 A00293816;Juan David;Vera Usman;3184696446;juandaveru@gmail.com;5;.\\img\\vera.jpg;16/08/1998;21;Software Engineering

@@ -3,12 +3,12 @@ package model;
 import exceptions.ExistStudentException;
 import exceptions.NoExistContactException;
 import exceptions.NotExistSubjectException;
-
+import java.util.List;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Schedule {
 
@@ -26,12 +26,17 @@ public class Schedule {
     private Map<String, Contact> contacts;
     private ArrayList<Join> join;
 
+    private List<Subject> aux2;
+    private List<Subject> allSubjects;
+
 
     // Constructor
     public Schedule() throws NumberFormatException, IOException {
         contacts = new HashMap<String, Contact>();
         contact = new Contact();
         join = new ArrayList<Join>();
+        aux2 = new ArrayList<>();
+        allSubjects = new ArrayList<>();
 
         readJoin();
         chargeData();
@@ -226,6 +231,7 @@ public class Schedule {
             //Carga la información de la materia.
             chargeDataSubject();
         }
+
         bF.close();
     }
 
@@ -241,7 +247,12 @@ public class Schedule {
             int enrolledStudent = Integer.parseInt(data[4]);
             // Add Subject
             contact.addSubject(name, teacherName, nrc, credits, enrolledStudent);
+            Subject nSubject = new Subject(name,teacherName,nrc,credits,enrolledStudent);
+            aux2.add(nSubject);
+
+
         }
+
         bF.close();
     }
 
@@ -268,14 +279,16 @@ public class Schedule {
      * @param bornDate - La fecha de nacimiento.
      * @return - El estudiante.
      */
-    public Contact searchByBornDate(String bornDate) {
+    public ArrayList<Contact> searchByBornDate(String bornDate) {
         Contact objContact = null;
+        ArrayList<Contact> listContact = new ArrayList<Contact>();
         for (Contact cont : contacts.values()) {
             if (cont.getBornDate().equals(bornDate)) {
                 objContact = cont;
+                listContact.add(objContact);
             }
         }
-        return objContact;
+        return listContact;
     }
 
     /**
@@ -284,14 +297,16 @@ public class Schedule {
      * @param name - El nombre.
      * @return - El estudiante.
      */
-    public Contact searchByName(String name) {
+    public ArrayList<Contact> searchByName(String name) {
         Contact objContact = null;
+        ArrayList<Contact> listContact = new ArrayList<Contact>();
         for (Contact cont : contacts.values()) {
             if (cont.getName().equals(name)) {
                 objContact = cont;
+                listContact.add(objContact);
             }
         }
-        return objContact;
+        return listContact;
     }
 
     /**
@@ -300,14 +315,16 @@ public class Schedule {
      * @param lastName - El apellido.
      * @return - El estudiante.
      */
-    public Contact searchByLastName(String lastName) {
+    public ArrayList<Contact> searchByLastName(String lastName) {
         Contact objContact = null;
+        ArrayList<Contact> listContact = new ArrayList<Contact>();
         for (Contact cont : contacts.values()) {
             if (cont.getLastName().equals(lastName)) {
                 objContact = cont;
+                listContact.add(objContact);
             }
         }
-        return objContact;
+        return listContact;
     }
 
     /**
@@ -424,6 +441,19 @@ public class Schedule {
         return sum;
     }
 
+
+    /**
+     *  Obtiene todas las materias de todos los contactos
+     * @return allSubjects - las lista.
+     */
+    public List<Subject> allSubjectsList(String name, String teacherName, String nrc, int credits, int enrolledStudent){
+        List<Subject> allSubjets = new ArrayList<>();
+        allSubjets.add(new Subject(name, teacherName, nrc, credits, enrolledStudent));
+        return allSubjets;
+    }
+
+
+
     /**
      * Devuelve la colección de estudiantes.
      */
@@ -447,4 +477,27 @@ public class Schedule {
         this.join = join;
     }
 
+    public List<Subject> getAllSubjects() {
+
+        List<String> aux = aux2.stream().map(sub->sub.getNrc()).distinct().collect(Collectors.toList());
+
+        //allSubjects.clear();
+
+        for (int i=0; i<aux.size(); i++){
+            int counter = 1;
+            for (int j = 0; j < aux2.size(); j++) {
+                if (aux.get(i).equals(aux2.get(j).getNrc()) && counter<2){
+                    allSubjects.add(aux2.get(j));
+                    counter++;
+                }else {
+
+                }
+            }
+        }
+        return allSubjects;
+    }
+
+    public void setAllSubjects(List<Subject> allSubjects) {
+        this.allSubjects = allSubjects;
+    }
 }
