@@ -433,8 +433,10 @@ public class ScheduleController implements Initializable {
         
         // Esta linea representa a las comentadas
         schedule.addSubjectByContactInJoin(contact,subject);
+        
         lvCourses.getItems().add(subject.getNrc()+ "-" + subject.getName());
         clearCourse();
+        schedule.savedData();
     }
 
     @FXML
@@ -515,6 +517,8 @@ public class ScheduleController implements Initializable {
             men.setContentText("El estudiante a agregar ya está en la colección.");
             men.showAndWait();
         }
+        
+        
     }
 
     /**
