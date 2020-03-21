@@ -174,7 +174,7 @@ public class ScheduleController implements Initializable {
         currentContact = null;
         cbCriterio.getItems().add("Seleccione un criterio");
         cbCriterio.getSelectionModel().select(0);
-        cbCriterio.getItems().addAll("NOMBRE", "APELLIDO", "FECHA NACIMIENTO", "CÓDIGO");
+        cbCriterio.getItems().addAll("EMAIL", "APELLIDO", "TELEFONO", "CÓDIGO");
 
         printContacts(); // Muestra los datos de los estudiantes en la interfaz de usuario.
 
@@ -239,6 +239,23 @@ public class ScheduleController implements Initializable {
            // schedule.setContact(contact);
         }
         return contact;
+    }
+    
+    public Contact resultSearchLastName(int p, String lastName) {
+    	Contact c = null;
+    	List<Contact> cList = new ArrayList<Contact>(schedule.searchByLastName(lastName));
+    	if (pos >= 0 && pos < cList.size()) {
+            c = cList.get(pos);
+            currentId = c.getId();
+            currentContact = c;
+           // schedule.setContact(contact);
+        }
+        return c;
+    }
+    
+    public void printContactsLastName(String lastName) {
+        printContact(resultSearchLastName(0, lastName));
+        printListViewSubject();
     }
 
     /**
@@ -558,23 +575,23 @@ public class ScheduleController implements Initializable {
     @FXML
     public void searchForCriterio() {
         try {
-            if (cbCriterio.getValue().equals("NOMBRE")) {
+            if (cbCriterio.getValue().equals("EMAIL")) {
                 if (tfSearch.getText() != null || !tfSearch.equals("")) {
-                    //printContact(schedule.searchByName(tfSearch.getText()));
+                	printContact(schedule.searchByEmail(tfSearch.getText()));
                     printListViewSubject();
                     cbCriterio.getSelectionModel().select(0);
                     tfSearch.setText("");
                 }
             } else if (cbCriterio.getValue().equals("APELLIDO")) {
                 if (tfSearch.getText() != null || !tfSearch.equals("")) {
-                    //printContact(schedule.searchByLastName(tfSearch.getText()));
+                	printContactsLastName(tfSearch.getText());
                     printListViewSubject();
                     cbCriterio.getSelectionModel().select(0);
                     tfSearch.setText("");
                 }
-            } else if (cbCriterio.getValue().equals("FECHA NACIMIENTO")) {
+            } else if (cbCriterio.getValue().equals("TELEFONO")) {
                 if (tfSearch.getText() != null || !tfSearch.equals("")) {
-                    //printContact(schedule.searchByBornDate(tfSearch.getText()));
+                	printContact(schedule.searchByPhone(tfSearch.getText()));
                     printListViewSubject();
                     cbCriterio.getSelectionModel().select(0);
                     tfSearch.setText("");

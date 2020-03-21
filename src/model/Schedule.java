@@ -279,16 +279,14 @@ public class Schedule {
      * @param bornDate - La fecha de nacimiento.
      * @return - El estudiante.
      */
-    public ArrayList<Contact> searchByBornDate(String bornDate) {
+    public Contact searchByEmail(String email) {
         Contact objContact = null;
-        ArrayList<Contact> listContact = new ArrayList<Contact>();
         for (Contact cont : contacts.values()) {
-            if (cont.getBornDate().equals(bornDate)) {
+            if (cont.getEmail().equals(email)) {
                 objContact = cont;
-                listContact.add(objContact);
             }
         }
-        return listContact;
+        return objContact;
     }
 
     /**
@@ -297,16 +295,14 @@ public class Schedule {
      * @param name - El nombre.
      * @return - El estudiante.
      */
-    public ArrayList<Contact> searchByName(String name) {
+    public Contact searchByPhone(String phone) {
         Contact objContact = null;
-        ArrayList<Contact> listContact = new ArrayList<Contact>();
         for (Contact cont : contacts.values()) {
-            if (cont.getName().equals(name)) {
+            if (cont.getTelephone().equals(phone)) {
                 objContact = cont;
-                listContact.add(objContact);
             }
         }
-        return listContact;
+        return objContact;
     }
 
     /**
