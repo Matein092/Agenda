@@ -495,7 +495,8 @@ public class Schedule {
                            String avatar, String bornDate, int age, String program) throws ExistStudentException {
         Contact contact = searchById(id);
         if (contact == null) {
-            contact = new Contact(name, lastName, telephone, email, id, semester, avatar, bornDate, age, program);
+            contact = new Contact(id, name, lastName, telephone, email, semester, avatar,
+                    bornDate, age, program);
             contacts.put(contact.getId(), contact);
         } else if (contact != null) {
             throw new ExistStudentException();
