@@ -136,7 +136,46 @@ public class Schedule {
         bF.close();
     }
 
+    
+    
+    /*///////////////////////////////////////////////////
+     *////////////////////////0000000///////////////////
+     //////////////////////////////////////////////////
+    
+    public void addSubjectByContactInJoin(Contact valueContact, Subject valueSubject ) {
+    	boolean found = false;
+    	for (int i = 0; i < join.size() && !found; i++) {
+    		// Verifica si en el arraylist ya existe un estudiante con el mismo id y nrc
+			if(valueContact.getId().equals(join.get(i).getId()) && valueSubject.getNrc().equals(join.get(i).getNrc())){
+				found = true;
+			}
+		}
+    	
+    	// Si el estudiante no tiene el mismo id y nrc
+    	if(found != true) {
+    		join.add(new Join(valueContact.getId(),valueSubject.getNrc()));
+    	}
+    	
+    	
+    	//Agregar el contacto a la estructura contenedora.
+    	Contact foundContact = searchById(valueContact.getId());
+    	
+    	if(foundContact == null) {
+    		contacts.put(valueContact.getId(), valueContact);
+    	}
 
+    	/// Agregar la materia a la estructura contenedora.
+    	Subject foundSubject = contact.searchSubject(valueSubject.getNrc());
+    	
+    	if(foundSubject == null) {
+    		contact.getSubj().put(valueSubject.getNrc(), valueSubject);
+    	}
+    
+    	
+    }
+    
+    
+    
     @SuppressWarnings("unused")
     public List<Subject> searchSubjectByContact(String id) throws NotExistSubjectException {
         List<Subject> subjects = new ArrayList<Subject>();

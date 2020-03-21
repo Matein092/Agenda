@@ -342,20 +342,43 @@ public class ScheduleController implements Initializable {
         clearCourse();
     }
 
+    
+    ///////////////
     @FXML
     public void btSaveCourse(ActionEvent event) {
 
+    	String id = tfCode.getText();
+    	String nameContact = tfName.getText();
+    	String lastName = tfLastName.getText();
+    	String telephone = tfTelephone.getText();
+    	String email = tfEmail.getText();
+    	int semester = Integer.parseInt(tfSemester.getText());
+    	String avatar = "";
+    	String bornDate = "";
+    	int age = Integer.parseInt(tfAge.getText());
+    	String program = tfCareer.getText();
+    	
+    	Contact contact = new Contact(id, nameContact, lastName, telephone, email, semester, avatar, bornDate, age, program);
+    	
+    	
         String nrc = tfNRC.getText();
         String name = tfNameSubject.getText();
         int credits = Integer.parseInt(tfCredits.getText());
         String teacherName = tfTeacher.getText();
         int enrolledStudent = Integer.parseInt(tfEnrolledStudent.getText());
-
+        
+        Subject subject = new Subject(name, teacherName, nrc, credits, enrolledStudent);
+        
+     /**   	
         schedule.getJoin().add(new Join(currentId, nrc));
-        //schedule.getContact().addSubject(name, nrc, teacherName, credits, enrolledStudent);
+        schedule.getContact().addSubject(name, nrc, teacherName, credits, enrolledStudent);
         schedule.getContact().getSubj().put(nrc, new Subject(name, nrc, teacherName, credits, enrolledStudent));
-        Subject s = schedule.getContact().searchSubject(nrc);
-        lvCourses.getItems().add(s.getNrc()+ "-" + s.getName());
+        */
+        
+        
+        // Esta linea representa a las comentadas
+        schedule.addSubjectByContactInJoin(contact,subject);
+        lvCourses.getItems().add(subject.getNrc()+ "-" + subject.getName());
         clearCourse();
     }
 
@@ -462,6 +485,7 @@ public class ScheduleController implements Initializable {
 
         pos += 1;
         printContacts();
+        
     }
 
     /**
