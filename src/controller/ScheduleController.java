@@ -172,6 +172,8 @@ public class ScheduleController implements Initializable {
         currentNRC = "";
         cSubject = null;
         currentContact = null;
+        cbCriterio.getItems().add("Seleccione un criterio");
+        cbCriterio.getSelectionModel().select(0);
         cbCriterio.getItems().addAll("NOMBRE", "APELLIDO", "FECHA NACIMIENTO", "CÓDIGO");
 
         printContacts(); // Muestra los datos de los estudiantes en la interfaz de usuario.
@@ -525,10 +527,49 @@ public class ScheduleController implements Initializable {
             men.setContentText("El estudiante a modificar no existe.");
             men.showAndWait();
         }
+
     }
 
+    // NOMBRE", "APELLIDO", "FECHA NACIMIENTO", "CÓDIGO"
     @FXML
     public void searchForCriterio() {
+        try {
+            if (cbCriterio.getValue().equals("NOMBRE")) {
+                if (tfSearch.getText() != null || !tfSearch.equals("")) {
+                    printContact(schedule.searchByName(tfSearch.getText()));
+                    printListViewSubject();
+                    cbCriterio.getSelectionModel().select(0);
+                    tfSearch.setText("");
+                }
+            } else if (cbCriterio.getValue().equals("APELLIDO")) {
+                if (tfSearch.getText() != null || !tfSearch.equals("")) {
+                    printContact(schedule.searchByLastName(tfSearch.getText()));
+                    printListViewSubject();
+                    cbCriterio.getSelectionModel().select(0);
+                    tfSearch.setText("");
+                }
+            } else if (cbCriterio.getValue().equals("FECHA NACIMIENTO")) {
+                if (tfSearch.getText() != null || !tfSearch.equals("")) {
+                    printContact(schedule.searchByBornDate(tfSearch.getText()));
+                    printListViewSubject();
+                    cbCriterio.getSelectionModel().select(0);
+                    tfSearch.setText("");
+                }
+            } else if (cbCriterio.getValue().equals("CÓDIGO")) {
+                if (tfSearch.getText() != null || !tfSearch.equals("")) {
+                    printContact(schedule.searchById(tfSearch.getText()));
+                    printListViewSubject();
+                    cbCriterio.getSelectionModel().select(0);
+                    tfSearch.setText("");
+                }
+            }
+        }catch (NullPointerException e){
+            Alert men = new Alert(Alert.AlertType.ERROR);
+            men.setTitle("Error");
+            men.setHeaderText("Estudiante no encontrado");
+            men.setContentText("El estudiante buscado no existe.");
+            men.showAndWait();
+        }
     }
 
 }
