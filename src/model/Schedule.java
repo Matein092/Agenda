@@ -234,7 +234,8 @@ public class Schedule {
 
         bF.close();
     }
-
+    
+    
     private void chargeDataSubject() throws IOException {
         BufferedReader bF = new BufferedReader(new FileReader(COURSES_PATH));
         String line = bF.readLine();
@@ -254,8 +255,114 @@ public class Schedule {
         }
 
         bF.close();
+    }    
+    /**
+     * Este metodo permite guardar los datos de las estructuras contenedoras en el archivo de texto plano.
+     */
+    public void savedData() {
+    	
+    	try {
+    		auxSavedJoin();
+			auxSavedContact();
+			auxSavedSubject();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	    	
     }
+    
+    /**
+     * Este metodo es auxiliar del metodo savedData.
+     * @throws IOException
+     */
+    private void auxSavedJoin() throws IOException {
 
+    	File file = new File(SCHEDULE_JOIN);
+    	FileWriter fw = new FileWriter(file);
+    	
+    	fw.write("ID"+";"+"NRC");
+    	fw.write("\n");
+    
+    	for (Join j : join) {
+    		
+    		String id = j.getId();
+    		String nrc = j.getNrc();
+    		
+    		
+    		String value = id+";"+nrc;
+    		fw.write(value);
+    		fw.write("\n");
+    	}
+    	fw.close();
+    }
+    
+    /**
+     * Este metodo es auxiliar del metodo savedData.
+     * @throws IOException
+     */
+    private void auxSavedContact() throws IOException {
+
+    	File file = new File(STUDENTS_PATH);
+    	FileWriter fw = new FileWriter(file);
+    								 		
+    	fw.write("Codigo"+";"+"Nombre"+";"+"Apellido"+";"+"Telefono"+";"+"Email"+";"+"Semestre"+";"+"Foto"+";"+"Cumpleaños"+";"+"(Día/Mes/Año)"+";"+"Edad"+";"+"Carrera");
+    	fw.write("\n");   	
+    	
+    	//Guarda los contactos a el archivo de texto
+    	for (Contact c : contacts.values()) {
+    	 String id = c.getId();
+         String name = c.getName();
+         String lastName = c.getLastName();
+         String telephone = c.getTelephone();
+         String email = c.getEmail();
+         String semester = String.valueOf((c.getSemester()));
+         String avatar = c.getAvatar();
+         String bornDate = c.getBornDate();
+         String age = String.valueOf((c.getAge()));
+         String program = c.getProgram();
+         
+         String value = id+";"+name+";"+lastName+";"+telephone+";"+email+";"+semester+";"+avatar+";"+bornDate+";"+age+";"+program;
+         
+         fw.write(value);
+         fw.write("\n");
+    	}
+    	fw.close();
+    	
+    	
+    	
+    }
+    /**
+     * Este metodo es auxiliar del metodo savedData.
+     * @throws IOException
+     */
+    private void auxSavedSubject() throws IOException {
+    	File file = new File(COURSES_PATH);
+    	FileWriter fw = new FileWriter(file);
+    	
+    	fw.write("#Name"+";"+"Teacher"+";"+"Name"+";"+"NRC"+";"+"Credits"+";"+"EnrolledStudent");
+    	fw.write("\n");
+    	
+    	//Guarda los contactos a el archivo de texto
+    	for (Subject s : contact.getSubj().values()) {
+    		
+             String name = s.getName();
+             String teacherName = s.getTeacherName();
+             String nrc = s.getNrc();
+             int credits = s.getCredits();
+             int enrolledStudent = s.getEnrolledStudent();
+         
+         String value = name+";"+teacherName+";"+nrc+";"+credits+";"+enrolledStudent;
+         
+         fw.write(value);
+         fw.write("\n");
+    	}
+    	fw.close();
+    
+    	
+    }
+           
+    
+    
     /**
      * Busca un estudiante por su código
      *

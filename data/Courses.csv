@@ -1,23 +1,26 @@
-#Name;Teacher Name;NRC;Credits;EnrolledStudent
-Ingeniería Económica;Diana Ramirez;11144;4;32
-Proyecto Integrador I;Juan Manuel Reyes y Cristian;10446;3;32
-Modelado de Sistemas de Infomación;Ángela Villota;10445;2;34
+#Name;Teacher;Name;NRC;Credits;EnrolledStudent
+Cï¿½lculo Varias Variables;;10391;4;38
+Matemï¿½tica Discreta;Uram Anibal Sosa;10394;3;35
+Frances I;;10294;0;35
+Fisica y Laboratorio;Hernï¿½n Triana;10809;4;32
+Redes ;Yor Jaggy Castaï¿½o;10799;4;33
+1;11;111;1;11
+ï¿½tica y Tecnologï¿½a;Raquel Dï¿½az;10716;2;42
+LAB - Fï¿½sica y Laboratorio;;10816;0;35
+Ingenierï¿½a Econï¿½mica;Diana Ramirez;11144;4;32
+LAB - Redes ;Rodrigo de la Peï¿½a;11167;0;26
+Inglï¿½s VII;Maria J. Franky;11467;0;27
+1;1;11;1;1
 Electricidad-Magnetismo;Hernan Triana;10819;4;36
 LAB - Electricidad-Magentismo;Luis;10818;0;32
-Matemática Discreta;Uram Anibal Sosa;10394;3;35
-Inferencia Estadística;Rubén Corrales;10342;3;37
-Cálculo de una Variable;Luis Gamarra;10384;4;41
+Electiva en Problemas Colombianos: Ensayos para la Habana;Luis Barï¿½n Porras;11976;3;34
+2;2;1;2;2
+Informï¿½tica Teï¿½rica;Andrï¿½s Aristizabal;10406;3;35
+3;33;3;3;3
 Liderazgo;;10903;3;38
-Frances I;;10294;0;35
-Alemán II;;10321;0;36
-LAB - Física y Laboratorio;;10816;0;35
-Cálculo Varias Variables;;10391;4;38
-Física y Laboratorio;;10809;4;39
-Informática Teórica;Andrés Aristizabal;10406;3;35
-Electiva en Problemas Colombianos: Ensayos para la Habana;Luis Barón Porras;11976;3;34
-Fisica y Laboratorio;Hernán Triana;10809;4;32
-LAB - Física y Laboratorio;Luis Giraldo;10806;0;33
-Redes ;Yor Jaggy Castaño;10799;4;33
-LAB - Redes ;Rodrigo de la Peï¿½a;11167;0;26
-Inglés VII;Maria J. Franky;11467;0;27
-Ética y Tecnología;Raquel Díaz;10716;2;42
+LAB - Fï¿½sica y Laboratorio;Luis Giraldo;10806;0;33
+Cï¿½lculo de una Variable;Luis Gamarra;10384;4;41
+Alemï¿½n II;;10321;0;36
+Inferencia Estadï¿½stica;Rubï¿½n Corrales;10342;3;37
+Proyecto Integrador I;Juan Manuel Reyes y Cristian;10446;3;32
+Modelado de Sistemas de Infomaciï¿½n;ï¿½ngela Villota;10445;2;34
