@@ -63,4 +63,12 @@ public class Subject {
         return nrc + "," + name;
     }
 
+    public boolean equals(Subject subject){
+        if(this.getNrc().equals(subject.getNrc())){
+            return  true;
+        }else{
+            return false;
+        }
+    }
+
 }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Schedule {
 
@@ -26,12 +27,17 @@ public class Schedule {
     private Map<String, Contact> contacts;
     private ArrayList<Join> join;
 
+    private List<Subject> aux2;
+    private List<Subject> allSubjects;
+
 
     // Constructor
     public Schedule() throws NumberFormatException, IOException {
         contacts = new HashMap<String, Contact>();
         contact = new Contact();
         join = new ArrayList<Join>();
+        aux2 = new ArrayList<>();
+        allSubjects = new ArrayList<>();
 
         readJoin();
         chargeData();
@@ -187,6 +193,7 @@ public class Schedule {
             //Carga la información de la materia.
             chargeDataSubject();
         }
+
         bF.close();
     }
 
@@ -202,7 +209,12 @@ public class Schedule {
             int enrolledStudent = Integer.parseInt(data[4]);
             // Add Subject
             contact.addSubject(name, teacherName, nrc, credits, enrolledStudent);
+            Subject nSubject = new Subject(name,teacherName,nrc,credits,enrolledStudent);
+            aux2.add(nSubject);
+
+
         }
+
         bF.close();
     }
 
@@ -385,6 +397,19 @@ public class Schedule {
         return sum;
     }
 
+
+    /**
+     *  Obtiene todas las materias de todos los contactos
+     * @return allSubjects - las lista.
+     */
+    public List<Subject> allSubjectsList(String name, String teacherName, String nrc, int credits, int enrolledStudent){
+        List<Subject> allSubjets = new ArrayList<>();
+        allSubjets.add(new Subject(name, teacherName, nrc, credits, enrolledStudent));
+        return allSubjets;
+    }
+
+
+
     /**
      * Devuelve la colección de estudiantes.
      */
@@ -408,4 +433,27 @@ public class Schedule {
         this.join = join;
     }
 
+    public List<Subject> getAllSubjects() {
+
+        List<String> aux = aux2.stream().map(sub->sub.getNrc()).distinct().collect(Collectors.toList());
+
+        //allSubjects.clear();
+
+        for (int i=0; i<aux.size(); i++){
+            int counter = 1;
+            for (int j = 0; j < aux2.size(); j++) {
+                if (aux.get(i).equals(aux2.get(j).getNrc()) && counter<2){
+                    allSubjects.add(aux2.get(j));
+                    counter++;
+                }else {
+
+                }
+            }
+        }
+        return allSubjects;
+    }
+
+    public void setAllSubjects(List<Subject> allSubjects) {
+        this.allSubjects = allSubjects;
+    }
 }
