@@ -602,4 +602,21 @@ public class Schedule {
     public void setAllSubjects(List<Subject> allSubjects) {
         this.allSubjects = allSubjects;
     }
+    
+    private String getReport() {
+    	String msg = "";
+    	msg += "Codigo;Nombre;Apellido;Telefono;Email;Semestre;Foto;Cumpleaños;(Día/Mes/Año);Edad;Carrera\n";
+    	for (Contact cont : contacts.values()) {
+			msg += cont.getId()+";"+cont.getName()+";"+cont.getLastName()+";"+cont.getTelephone()+";"+cont.getEmail()+";"+cont.getSemester()+";"
+					+cont.getAvatar()+";"+cont.getBornDate()+";"+cont.getAge()+";"+cont.getProgram()+"\n";
+		}
+    	return msg;
+    }
+    
+    public void printReport() throws FileNotFoundException{
+    	PrintWriter pw = new PrintWriter(new File(STUDENTS_PATH));
+    	String repStr = getReport();
+    	pw.print(repStr);
+    	pw.close();
+    }
 }

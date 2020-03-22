@@ -17,6 +17,7 @@ import model.Join;
 import model.Schedule;
 import model.Subject;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -495,7 +496,8 @@ public class ScheduleController implements Initializable {
             schedule.addContact(tfName.getText(), tfLastName.getText(), tfTelephone.getText(), tfEmail.getText(),
                     tfCode.getText(), Integer.parseInt(tfSemester.getText()), "", dpBornDate.getValue() + "",
                     Integer.parseInt(tfAge.getText()), tfCareer.getText());
-        } catch (NumberFormatException | ExistStudentException e) {
+            schedule.printReport();
+        } catch (NumberFormatException | FileNotFoundException | ExistStudentException e) {
             Alert men = new Alert(Alert.AlertType.WARNING);
             men.setTitle("Avertencia");
             men.setHeaderText("Estudiante ya existe");
